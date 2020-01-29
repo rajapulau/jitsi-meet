@@ -5,9 +5,10 @@ import React from 'react';
 
 import { DialogContainer } from '../../base/dialog';
 import '../../base/user-interaction';
-import '../../base/responsive-ui';
 import '../../chat';
 import '../../external-api';
+import '../../no-audio-signal';
+import '../../noise-detection';
 import '../../power-monitor';
 import '../../room-lock';
 import '../../talk-while-muted';

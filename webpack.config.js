@@ -38,7 +38,10 @@ const config = {
             '/': {
                 bypass: devServerProxyBypass,
                 secure: false,
-                target: devServerProxyTarget
+                target: devServerProxyTarget,
+                headers: {
+                    'Host': new URL(devServerProxyTarget).host
+                }
             }
         }
     },
@@ -310,5 +313,7 @@ function devServerProxyBypass({ path }) {
         return path;
     }
 
-    /* eslint-enable array-callback-return, indent */
+    if (path.startsWith('/libs/')) {
+        return path;
+    }
 }
