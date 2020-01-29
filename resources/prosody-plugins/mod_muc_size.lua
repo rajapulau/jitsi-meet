@@ -105,7 +105,9 @@ function handle_get_room_size(event)
             "there are %s occupants in room", tostring(participant_count));
 	else
 		log("debug", "no such room exists");
-		return 404;
+		-- return 404;
+		local data = {participants = 0}
+		return json.encode(data);
 	end
 
 	if participant_count > 1 then

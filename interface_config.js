@@ -14,22 +14,22 @@ var interfaceConfig = {
     INITIAL_TOOLBAR_TIMEOUT: 20000,
     TOOLBAR_TIMEOUT: 4000,
     TOOLBAR_ALWAYS_VISIBLE: false,
-    DEFAULT_REMOTE_DISPLAY_NAME: 'Fellow Jitster',
+    DEFAULT_REMOTE_DISPLAY_NAME: 'Guest',
     DEFAULT_LOCAL_DISPLAY_NAME: 'me',
     SHOW_JITSI_WATERMARK: true,
-    JITSI_WATERMARK_LINK: 'https://jitsi.org',
+    JITSI_WATERMARK_LINK: 'https://qiscus.com',
 
     // if watermark is disabled by default, it can be shown only for guests
-    SHOW_WATERMARK_FOR_GUESTS: true,
+    SHOW_WATERMARK_FOR_GUESTS: false,
     SHOW_BRAND_WATERMARK: false,
     BRAND_WATERMARK_LINK: '',
     SHOW_POWERED_BY: false,
     SHOW_DEEP_LINKING_IMAGE: false,
     GENERATE_ROOMNAMES_ON_WELCOME_PAGE: true,
     DISPLAY_WELCOME_PAGE_CONTENT: true,
-    APP_NAME: 'Jitsi Meet',
-    NATIVE_APP_NAME: 'Jitsi Meet',
-    PROVIDER_NAME: 'Jitsi',
+    APP_NAME: 'Qiscus Meet',
+    NATIVE_APP_NAME: ' Qiscus Meet',
+    PROVIDER_NAME: 'Qiscus',
     LANG_DETECTION: false, // Allow i18n to detect the system language
     INVITATION_POWERED_BY: true,
 
@@ -46,11 +46,10 @@ var interfaceConfig = {
      * jwt.
      */
     TOOLBAR_BUTTONS: [
-        'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-        'fodeviceselection', 'hangup', 'profile', 'info', 'chat', 'recording',
-        'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
-        'videoquality', 'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts',
-        'tileview', 'videobackgroundblur'
+        'microphone','raisehand', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+        'fodeviceselection', 'hangup', 'profile', 'info', 'recording',
+        'livestreaming', 'etherpad', 'settings', 'videoquality',
+        'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 'tileview'
     ],
 
     SETTINGS_SECTIONS: [ 'devices', 'language', 'moderator', 'profile', 'calendar' ],
@@ -112,7 +111,7 @@ var interfaceConfig = {
      *
      * @type {boolean}
      */
-    MOBILE_APP_PROMO: true,
+    MOBILE_APP_PROMO: false,
 
     /**
      * Maximum coeficient of the ratio of the large video to the visible area
@@ -173,11 +172,11 @@ var interfaceConfig = {
     // has a suboptimal experience. Browsers which are not listed as optimal or
     // unsupported are considered suboptimal. Valid values are:
     // chrome, chromium, edge, electron, firefox, nwjs, opera, safari
-    OPTIMAL_BROWSERS: [ 'chrome', 'chromium', 'firefox', 'nwjs', 'electron' ],
+    OPTIMAL_BROWSERS: [ 'chrome', 'chromium' ],
 
     // Browsers, in addition to those which do not fully support WebRTC, that
     // are not supported and should show the unsupported browser page.
-    UNSUPPORTED_BROWSERS: [],
+    UNSUPPORTED_BROWSERS: [ 'safari' ],
 
     /**
      * A UX mode where the last screen share participant is automatically

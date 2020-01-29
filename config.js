@@ -16,7 +16,7 @@ var config = {
 
     hosts: {
         // XMPP domain.
-        domain: 'jitsi-meet.example.com',
+        domain: 'meet.qiscus.com',
 
         // When using authentication, domain for guest users.
         // anonymousdomain: 'guest.example.com',
@@ -34,11 +34,11 @@ var config = {
         // focus: 'focus.jitsi-meet.example.com',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.jitsi-meet.example.com'
+        muc: 'conference.meet.qiscus.com'
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    bosh: '//jitsi-meet.example.com/http-bind',
+    bosh: '//meet.qiscus.com/http-bind',
 
     // The name of client node advertised in XEP-0115 'c' stanza
     clientNode: 'http://jitsi.org/jitsimeet',
@@ -170,7 +170,8 @@ var config = {
     // Recording
 
     // Whether to enable file recording or not.
-    // fileRecordingsEnabled: false,
+    //fileRecordingsEnabled: false,
+    fileRecordingsEnabled: true,
     // Enable the dropbox integration.
     // dropbox: {
     //     appKey: '<APP_KEY>' // Specify your app key here.
@@ -192,7 +193,8 @@ var config = {
 
     // Whether to enable live streaming or not.
     // liveStreamingEnabled: false,
-
+    liveStreamingEnabled: true,
+    hiddenDomain: 'recorder.meet.qiscus.com',
     // Transcription (in interface_config,
     // subtitles and buttons can be configured)
     // transcribingEnabled: false,
@@ -257,6 +259,8 @@ var config = {
 
     // Disable hiding of remote thumbnails when in a 1-on-1 conference call.
     // disable1On1Mode: false,
+    // hendra
+    disable1On1Mode: true,
 
     // Default language for the user interface.
     // defaultLanguage: 'en',
