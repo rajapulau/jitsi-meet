@@ -48,8 +48,7 @@ var interfaceConfig = {
      */
     TOOLBAR_BUTTONS: [
         'microphone','raisehand', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-        'fodeviceselection', 'hangup', 'profile', 'info', 'recording',
-        'livestreaming', 'etherpad', 'settings', 'videoquality',
+        'fodeviceselection', 'hangup', 'profile', 'info', 'etherpad', 'settings', 'videoquality',
         'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 'tileview'
     ],
 
@@ -198,14 +197,14 @@ var interfaceConfig = {
     DISABLE_PRESENCE_STATUS: false,
 
     // If true, notifications regarding joining/leaving are no longer displayed
-    DISABLE_JOIN_LEAVE_NOTIFICATIONS: false,
+    DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
 
     /**
     * Decides whether the chrome extension banner should be rendered on the landing page and during the meeting.
     * If this is set to false, the banner will not be rendered at all. If set to true, the check for extension(s)
     * being already installed is done before rendering.
     */
-    SHOW_CHROME_EXTENSION_BANNER: false
+    SHOW_CHROME_EXTENSION_BANNER: false,
 
     /**
      * How many columns the tile view can expand to. The respected range is
@@ -216,7 +215,7 @@ var interfaceConfig = {
     /**
      * Specify custom URL for downloading android mobile app.
      */
-    // MOBILE_DOWNLOAD_LINK_ANDROID: 'https://play.google.com/store/apps/details?id=org.jitsi.meet',
+    MOBILE_DOWNLOAD_LINK_ANDROID: 'https://drive.google.com/file/d/16Pk5307XvICJUek4RWy78g7QG6jq-yzJ/view?usp=sharing',
 
     /**
      * Specify URL for downloading ios mobile app.
@@ -226,12 +225,12 @@ var interfaceConfig = {
     /**
      * Specify mobile app scheme for opening the app from the mobile browser.
      */
-    // APP_SCHEME: 'org.jitsi.meet',
+    //APP_SCHEME: 'com.qiscus.meet',
 
     /**
      * Specify the Android app package name.
      */
-    // ANDROID_APP_PACKAGE: 'org.jitsi.meet',
+    ANDROID_APP_PACKAGE: 'com.qiscus.meet.sample'
 
     /**
      * Override the behavior of some notifications to remain displayed until

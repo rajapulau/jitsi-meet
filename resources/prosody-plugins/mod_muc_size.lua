@@ -163,7 +163,12 @@ function handle_get_room (event)
 				    for _, pr in occupant:each_session() do
 					local nick = pr:get_child_text("nick", "http://jabber.org/protocol/nick") or "";
 					local email = pr:get_child_text("email") or "";
+					local audiomuted = pr:get_child_text("audiomuted", "http://jitsi.org/jitmeet/audio") or "";
+                                        local videomuted = pr:get_child_text("videomuted", "http://jitsi.org/jitmeet/video") or "";
+
 					occupants_json:push({
+					    audiomuted= tostring(audiomuted),
+                                            videomuted= tostring(videomuted),
 					    jid = tostring(occupant.nick),
 					    email = tostring(email),
 					    display_name = tostring(nick)});
