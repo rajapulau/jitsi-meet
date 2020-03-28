@@ -59,7 +59,7 @@
     "lib-jitsi-meet": "github:jitsi/lib-jitsi-meet#6a3673140d27ef0508458954070d4395527be978",
     "libflacjs": "github:mmig/libflac.js#93d37e7f811f01cf7d8b6a603e38bd3c3810907d",
     "lodash": "4.17.13",
-    "moment": "2.19.4",
+    "moment": "^2.19.4",
     "moment-duration-format": "2.2.2",
     "pixelmatch": "5.1.0",
     "react": "16.9",
@@ -67,6 +67,7 @@
     "react-emoji-render": "1.0.0",
     "react-i18next": "10.11.4",
     "react-linkify": "1.0.0-alpha",
+    "react-moment": "^0.9.7",
     "react-native": "0.61.5",
     "react-native-background-timer": "2.1.1",
     "react-native-calendar-events": "github:jitsi/react-native-calendar-events#902e6e92d6bae450a6052f76ba4d02f977ffd8f2",
@@ -139,7 +140,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "postinstall": "jetify",
-    "validate": "npm ls"
+    "validate": "npm ls",
+    "lint": "jshint ."
   },
   "pre-commit": [
     "lint"
