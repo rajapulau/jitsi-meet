@@ -111,7 +111,7 @@ var interfaceConfig = {
      *
      * @type {boolean}
      */
-    MOBILE_APP_PROMO: false,
+    MOBILE_APP_PROMO: true,
 
     /**
      * Maximum coeficient of the ratio of the large video to the visible area
@@ -125,7 +125,7 @@ var interfaceConfig = {
      * If indicated some of the error dialogs may point to the support URL for
      * help.
      */
-    SUPPORT_URL: 'https://github.com/jitsi/jitsi-meet/issues/new',
+    SUPPORT_URL: 'https://support.qiscus.com/hc/en-us',
 
     /**
      * Whether the connection indicator icon should hide itself based on
@@ -215,22 +215,22 @@ var interfaceConfig = {
     /**
      * Specify custom URL for downloading android mobile app.
      */
-    MOBILE_DOWNLOAD_LINK_ANDROID: 'https://drive.google.com/file/d/16Pk5307XvICJUek4RWy78g7QG6jq-yzJ/view?usp=sharing',
+    MOBILE_DOWNLOAD_LINK_ANDROID: 'https://drive.google.com/file/d/1NmgwCtfFPzj75U-CEOvl4dXvAwH9y6vl/view?usp=sharing',
 
     /**
      * Specify URL for downloading ios mobile app.
      */
-    // MOBILE_DOWNLOAD_LINK_IOS: 'https://itunes.apple.com/us/app/jitsi-meet/id1165103905',
+    MOBILE_DOWNLOAD_LINK_IOS: 'https://beta.itunes.apple.com/v1/app/1504851543',
 
     /**
      * Specify mobile app scheme for opening the app from the mobile browser.
      */
-    //APP_SCHEME: 'com.qiscus.meet',
+    APP_SCHEME: 'com.qiscus.meetios',
 
     /**
      * Specify the Android app package name.
      */
-    ANDROID_APP_PACKAGE: 'com.qiscus.meet.sample'
+    ANDROID_APP_PACKAGE: 'com.qiscus.meet.app'
 
     /**
      * Override the behavior of some notifications to remain displayed until
