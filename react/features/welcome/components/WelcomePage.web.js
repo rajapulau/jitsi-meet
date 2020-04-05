@@ -119,7 +119,9 @@ class WelcomePage extends AbstractWelcomePage {
     componentDidMount() {
         super.componentDidMount();
 
-        this.interval = setInterval(() => this.setState({ now: Math.round((new Date()).getTime() / 1000) }), 1000);
+        // this.setState({ now: Math.round((new Date()).getTime() / 1000) })
+
+        this.interval = setInterval(() => this.setState({ now: Math.round((new Date()).getTime() / 1000) }), 60000);
 
         document.body.classList.add('welcome-page');
         document.title = interfaceConfig.APP_NAME;
@@ -173,7 +175,7 @@ class WelcomePage extends AbstractWelcomePage {
                 <div className = 'welcome-watermark'>
                     <Watermarks />
                     <div class="container-time">
-                        <div class="time second"><Moment format="HH:MM:SS" unix>{this.state.now}</Moment></div>
+                        <div class="time second"><Moment format="hh:mm a" unix>{this.state.now}</Moment></div>
                         <div class="time"><Moment format="ddd, DD MMM YYYY" unix>{this.state.now}</Moment></div>
                     </div>
                                      
