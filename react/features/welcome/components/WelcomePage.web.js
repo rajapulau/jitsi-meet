@@ -119,7 +119,7 @@ class WelcomePage extends AbstractWelcomePage {
     componentDidMount() {
         super.componentDidMount();
 
-        // this.setState({ now: Math.round((new Date()).getTime() / 1000) })
+        this.setState({ now: Math.round((new Date()).getTime() / 1000) })
 
         this.interval = setInterval(() => this.setState({ now: Math.round((new Date()).getTime() / 1000) }), 60000);
 
