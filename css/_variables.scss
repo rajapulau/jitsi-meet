@@ -181,7 +181,7 @@ $welcomePageHeaderBackgroundSize: none;
 $welcomePageHeaderPaddingBottom: 0px;
 
 $welcomePageHeaderTextMarginTop: 35px;
-$welcomePageHeaderTextMarginBottom: 35px;
+$welcomePageHeaderTextMarginBottom: 62px;
 
 $welcomePageHeaderTextTitleMarginBottom: 16px;
 $welcomePageHeaderTextTitleFontSize: 2.5rem;
@@ -197,7 +197,7 @@ $welcomePageHeaderTextDescriptionMarginBottom: 20px;
 $welcomePageHeaderTextDescriptionAlignSelf: inherit;
 
 $welcomePageEnterRoomWidth: 680px;
-$welcomePageEnterRoomPadding: 25px 30px;
+$welcomePageEnterRoomPadding: 0 30px 0 42px;
 $welcomePageEnterRoomBorderRadius: 0px;
 
 $welcomePageEnterRoomInputContainerPadding: 0 8px 5px 0px;
@@ -212,13 +212,13 @@ $welcomePageTabContentDisplay: inherit;
 $welcomePageTabButtonsDisplay: flex;
 $welcomePageTabDisplay: block;
 
-$welcomePageButtonWidth: 51px;
+$welcomePageButtonWidth: 88px;
 $welcomePageButtonMinWidth: inherit;
 $welcomePageButtonFontSize: 14px;
-$welcomePageButtonHeight: 35px;
+$welcomePageButtonHeight: 46px;
 $welcomePageButtonFontWeight: inherit;
 $welcomePageButtonBorderRadius: 4px;
-$welcomePageButtonLineHeight: 35px;
+$welcomePageButtonLineHeight: 45px;
 
 /**
  * Deep-linking page variables.

@@ -119,12 +119,7 @@ class WelcomePage extends AbstractWelcomePage {
     componentDidMount() {
         super.componentDidMount();
 
-        const self = this;
-        self.interval = setInterval(function() {
-        self.setState({
-            now: new Date(),
-        });
-        }, 1000);
+        this.interval = setInterval(() => this.setState({ now: Math.round((new Date()).getTime() / 1000) }), 1000);
 
         document.body.classList.add('welcome-page');
         document.title = interfaceConfig.APP_NAME;
@@ -177,11 +172,13 @@ class WelcomePage extends AbstractWelcomePage {
                 id = 'welcome_page'>
                 <div className = 'welcome-watermark'>
                     <Watermarks />
-                    <div class="time"><Moment format="HH:MM">{this.state.now}</Moment></div>
-                    <div class="time"><Moment format="ddd, DD MMM YYYY">{this.state.now}</Moment></div>                    
+                    <div class="container-time">
+                        <div class="time second"><Moment format="HH:MM:SS" unix>{this.state.now}</Moment></div>
+                        <div class="time"><Moment format="ddd, DD MMM YYYY" unix>{this.state.now}</Moment></div>
+                    </div>
+                                     
                 </div>
-                <div className = 'header'>
-                    <div className = 'welcome-page-settings'>
+                <div className = 'welcome-page-settings'>
                         <SettingsButton
                             defaultTab = { SETTINGS_TABS.CALENDAR } />
                         { showAdditionalToolbarContent
@@ -191,9 +188,10 @@ class WelcomePage extends AbstractWelcomePage {
                             : null
                         }
                     </div>
+                <div className = 'header'>
                     <div className = 'header-image' />
 
-                    {/* <div className = 'header-text'>
+                    <div className = 'header-text'>
                         <h1 className = 'header-text-title'>
                             { t('welcomepage.title') }
                         </h1>
@@ -201,7 +199,7 @@ class WelcomePage extends AbstractWelcomePage {
                             { t('welcomepage.appDescription',
                                 { app: APP_NAME }) }
                         </p>
-                    </div> */}
+                    </div>
                     
                     <div id = 'enter_room'>
                         <div className = 'enter-room-input-container'>
@@ -222,7 +220,7 @@ class WelcomePage extends AbstractWelcomePage {
                                     value = { this.state.room } />
                             </form>
                         </div>
-                        {/* <div
+                        <div
                             className = 'welcome-page-button'
                             id = 'enter_room_button'
                             onClick = { this._onFormSubmit }>
@@ -231,7 +229,7 @@ class WelcomePage extends AbstractWelcomePage {
                                     ? t('welcomepage.goSmall')
                                     : t('welcomepage.go')
                             }
-                        </div> */}
+                        </div>
                     </div>
                     {/* { this._renderTabs() } */}
                 </div>

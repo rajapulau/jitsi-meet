@@ -3,15 +3,51 @@ body.welcome-page {
     overflow: auto;
 }
 
+@media (max-width: 1000px) {
+    .welcome .welcome-watermark div{
+        font-size: 18px !important;
+    }
+
+    .welcome .welcome-watermark .container-time{
+        margin: -45px auto !important;
+    }
+    .welcome .welcome-watermark div{
+        font-size: 18px !important;
+    }
+
+    .welcome .header {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .welcome .header #enter_room{
+        width: auto !important;
+    }
+
+    .leftwatermark {
+        left:0 !important;
+    }
+
+    .welcome .welcome-page-settings {
+        right: 20px !important;
+    }
+
+    .welcome{
+        background-image: none !important;
+    }
+}
+
 .welcome {
     background-image: $welcomePageBackground;
     background-color: #01416C;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     font-family: $welcomePageFontFamily;
     justify-content: space-between;
     min-height: 100vh;
     position: relative;
+    background-size: 100%;
 
     .header {
         background-image: $welcomePageHeaderBackground;
@@ -25,7 +61,9 @@ body.welcome-page {
         min-height: fit-content;
         overflow: hidden;
         position: relative;
-        text-align: center;
+        text-align: left;
+        padding-top: 102px;
+        padding-left: 60px;
 
         .header-text {
             display: flex;
@@ -54,22 +92,26 @@ body.welcome-page {
             line-height: $welcomePageHeaderTextDescriptionLineHeight;
             margin-bottom: $welcomePageHeaderTextDescriptionMarginBottom;
             align-self: $welcomePageHeaderTextDescriptionAlignSelf;
+            margin-top: 18px;
         }
 
         #enter_room {
             display: flex;
-            flex-direction: column;
-            margin-top: 300px;
-            float: right;
+            // margin-top: 300px;
+            float: left;
+            background-size: 100%;
             // margin-bottom: $welcomePageHeaderTextMarginBottom;
+
+            background: #FFFFFF;
+            box-shadow: 0px 8px 28px rgba(51, 51, 51, 0.09);
+            border-radius: 10px;
 
             align-items: center;
             max-width: calc(100% - 40px);
-            width: $welcomePageEnterRoomWidth;
+            width: 590px;
+            height: 153px;
             z-index: $zindex2;
-            background-color: #fff;
             padding: $welcomePageEnterRoomPadding;
-            border-radius: $welcomePageEnterRoomBorderRadius;
 
             .enter-room-input-container {
                 width: 100%;
@@ -83,9 +125,9 @@ body.welcome-page {
 
                 .enter-room-title {
                     display: $welcomePageEnterRoomTitleDisplay;
-                    font-size: 18px;
+                    font-size: 24px;
                     font-weight: bold;
-                    padding-bottom: 5px;
+                    padding-bottom: 24px;
                 }
 
                 .enter-room-input {
@@ -160,20 +202,21 @@ body.welcome-page {
         height: $welcomePageButtonHeight;
         font-size: $welcomePageButtonFontSize;
         font-weight: $welcomePageButtonFontWeight;
-        background: #0074E0;
+        background: #01416C;
         border-radius: $welcomePageButtonBorderRadius;
         color: #FFFFFF;
         text-align: center;
         vertical-align: middle;
         line-height: $welcomePageButtonLineHeight;
+        margin-top: 37px;
         cursor: pointer;
     }
 
     .welcome-page-settings {
         color: $welcomePageDescriptionColor;
         position: absolute;
-        top: 32px;
-        right: 32px;
+        top: 58px;
+        right: 75px;
         z-index: $zindex2;
 
         * {
@@ -183,14 +226,19 @@ body.welcome-page {
     }
 
     .welcome-watermark {
-        display: flex;
+        // display: flex;
         flex-wrap: nowrap;
         position: absolute;
-        width: 100%;
+        width: 85%;
+
+        .container-time{
+            display: flex;
+            margin: 0 auto;
+            width: 100%;
+        }
 
         div {
-            width: 18%;
-            text-align: center;
+            width: 100%;
             line-height: 75px;
             font-size: 30px;
             color: #fff;
@@ -198,6 +246,17 @@ body.welcome-page {
 
         div.time{
             margin-top: 33px;
+            width: 100%;
+        }
+
+        div.second{
+            text-align: right;
+
+            :after {
+                content:"• ";
+                margin-left: 24px;
+                margin-right: 24px;
+            }
         }
     }
 }
