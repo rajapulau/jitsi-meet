@@ -248,10 +248,12 @@ body.welcome-page {
         div.time{
             margin-top: 33px;
             width: 100%;
+            font-size: 18px;
         }
 
         div.second{
             text-align: right;
+            font-weight: bold;
 
             :after {
                 content:"• ";
