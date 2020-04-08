@@ -16,7 +16,7 @@ import { getLocalParticipant } from '../../react/features/base/participants';
 import { toggleChat } from '../../react/features/chat';
 import { setDocumentUrl } from '../../react/features/etherpad';
 import { setFilmstripVisible } from '../../react/features/filmstrip';
-import { setNotificationsEnabled } from '../../react/features/notifications';
+import { joinLeaveNotificationsDisabled, setNotificationsEnabled } from '../../react/features/notifications';
 import {
     dockToolbox,
     setToolboxEnabled,
@@ -126,10 +126,6 @@ UI.initConference = function() {
     const { getState } = APP.store;
     const { id, name } = getLocalParticipant(getState);
 
-    // Update default button states before showing the toolbar
-    // if local role changes buttons state will be again updated.
-    UI.updateLocalRole(APP.conference.isModerator);
-
     UI.showToolbar();
 
     const displayName = config.displayJids ? id : name;
@@ -166,7 +162,7 @@ UI.start = function() {
     // resizeVideoArea) because the animation is not visible anyway. Plus with
     // the current dom layout, the quality label is part of the video layout and
     // will be seen animating in.
-    VideoLayout.resizeVideoArea(true, false);
+    VideoLayout.resizeVideoArea();
 
     sharedVideoManager = new SharedVideoManager(eventEmitter);
 
@@ -280,44 +276,6 @@ UI.onPeerVideoTypeChanged
     = (id, newVideoType) => VideoLayout.onVideoTypeChanged(id, newVideoType);
 
 /**
- * Update local user role and show notification if user is moderator.
- * @param {boolean} isModerator if local user is moderator or not
- */
-UI.updateLocalRole = isModerator => {
-    VideoLayout.showModeratorIndicator();
-
-    if (isModerator && !interfaceConfig.DISABLE_FOCUS_INDICATOR) {
-        messageHandler.participantNotification(
-            null, 'notify.me', 'connected', 'notify.moderator');
-    }
-};
-
-/**
- * Check the role for the user and reflect it in the UI, moderator ui indication
- * and notifies user who is the moderator
- * @param user to check for moderator
- */
-UI.updateUserRole = user => {
-    VideoLayout.showModeratorIndicator();
-
-    // We don't need to show moderator notifications when the focus (moderator)
-    // indicator is disabled.
-    if (!user.isModerator() || interfaceConfig.DISABLE_FOCUS_INDICATOR) {
-        return;
-    }
-
-    const displayName = user.getDisplayName();
-
-    messageHandler.participantNotification(
-        displayName,
-        'notify.somebody',
-        'connected',
-        'notify.grantedTo',
-        { to: displayName
-            ? UIUtil.escapeHtml(displayName) : '$t(notify.somebody)' });
-};
-
-/**
  * Updates the user status.
  *
  * @param {JitsiParticipant} user - The user which status we need to update.
@@ -327,7 +285,9 @@ UI.updateUserStatus = (user, status) => {
     const reduxState = APP.store.getState() || {};
     const { calleeInfoVisible } = reduxState['features/invite'] || {};
 
-    if (!status || calleeInfoVisible) {
+    // We hide status updates when join/leave notifications are disabled,
+    // as jigasi is the component with statuses and they are seen as join/leave notifications.
+    if (!status || calleeInfoVisible || joinLeaveNotificationsDisabled()) {
         return;
     }
 

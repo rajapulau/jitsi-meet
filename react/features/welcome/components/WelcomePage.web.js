@@ -4,8 +4,9 @@ import React from 'react';
 import Moment from 'react-moment';
 
 import { translate } from '../../base/i18n';
-import { Platform, Watermarks } from '../../base/react';
+import { Watermarks } from '../../base/react';
 import { connect } from '../../base/redux';
+import { isMobileBrowser } from '../../base/environment/utils';
 import { CalendarList } from '../../calendar-sync';
 import { RecentList } from '../../recent-list';
 import { SettingsButton, SETTINGS_TABS } from '../../settings';
@@ -292,14 +293,11 @@ class WelcomePage extends AbstractWelcomePage {
      * @returns {ReactElement|null}
      */
     _renderTabs() {
-        const isMobileBrowser
-            = Platform.OS === 'android' || Platform.OS === 'ios';
-
-        if (isMobileBrowser) {
+        if (isMobileBrowser()) {
             return null;
         }
 
-        const { _calendarEnabled, t } = this.props;
+        const { _calendarEnabled, _recentListEnabled, t } = this.props;
 
         const tabs = [];
 
@@ -310,10 +308,16 @@ class WelcomePage extends AbstractWelcomePage {
             });
         }
 
-        tabs.push({
-            label: t('welcomepage.recentList'),
-            content: <RecentList />
-        });
+        if (_recentListEnabled) {
+            tabs.push({
+                label: t('welcomepage.recentList'),
+                content: <RecentList />
+            });
+        }
+
+        if (tabs.length === 0) {
+            return null;
+        }
 
         return (
             <Tabs

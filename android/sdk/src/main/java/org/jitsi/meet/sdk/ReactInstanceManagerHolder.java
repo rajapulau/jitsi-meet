@@ -1,6 +1,5 @@
 /*
- * Copyright @ 2019-present 8x8, Inc.
- * Copyright @ 2017-2018 Atlassian Pty Ltd
+ * Copyright @ 2017-present 8x8, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +17,7 @@
 package org.jitsi.meet.sdk;
 
 import android.app.Activity;
+
 import androidx.annotation.Nullable;
 
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
@@ -31,13 +31,12 @@ import com.facebook.react.devsupport.DevInternalSettings;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.uimanager.ViewManager;
 import com.facebook.soloader.SoLoader;
+
 import com.oney.WebRTCModule.RTCVideoViewManager;
 import com.oney.WebRTCModule.WebRTCModule;
 
 import org.webrtc.SoftwareVideoDecoderFactory;
 import org.webrtc.SoftwareVideoEncoderFactory;
-import org.webrtc.VideoDecoderFactory;
-import org.webrtc.VideoEncoderFactory;
 import org.webrtc.audio.AudioDeviceModule;
 import org.webrtc.audio.JavaAudioDeviceModule;
 
@@ -84,12 +83,10 @@ class ReactInstanceManagerHolder {
 
         AudioDeviceModule adm = JavaAudioDeviceModule.builder(reactContext)
             .createAudioDeviceModule();
-        VideoDecoderFactory videoDecoderFactory = new SoftwareVideoDecoderFactory();
-        VideoEncoderFactory videoEncoderFactory = new SoftwareVideoEncoderFactory();
-
         options.setAudioDeviceModule(adm);
-        options.setVideoDecoderFactory(videoDecoderFactory);
-        options.setVideoEncoderFactory(videoEncoderFactory);
+
+        options.setVideoDecoderFactory(new SoftwareVideoDecoderFactory());
+        options.setVideoEncoderFactory(new SoftwareVideoEncoderFactory());
 
         nativeModules.add(new WebRTCModule(reactContext, options));
 

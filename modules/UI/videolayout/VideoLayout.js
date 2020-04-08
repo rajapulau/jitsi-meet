@@ -1,9 +1,6 @@
 /* global APP, $, interfaceConfig  */
 const logger = require('jitsi-meet-logger').getLogger(__filename);
 
-import {
-    JitsiParticipantConnectionStatus
-} from '../../../react/features/base/lib-jitsi-meet';
 import { VIDEO_TYPE } from '../../../react/features/base/media';
 import {
     getLocalParticipant as getLocalParticipantFromStore,
@@ -177,9 +174,9 @@ const VideoLayout = {
 
         // Make sure track's muted state is reflected
         if (stream.getType() === 'audio') {
-            this.onAudioMute(stream.getParticipantId(), stream.isMuted());
+            this.onAudioMute(id, stream.isMuted());
         } else {
-            this.onVideoMute(stream.getParticipantId(), stream.isMuted());
+            this.onVideoMute(id, stream.isMuted());
         }
     },
 
@@ -207,8 +204,7 @@ const VideoLayout = {
     updateMutedForNoTracks(participantId, mediaType) {
         const participant = APP.conference.getParticipantById(participantId);
 
-        if (participant
-                && !participant.getTracksByMediaType(mediaType).length) {
+        if (participant && !participant.getTracksByMediaType(mediaType).length) {
             if (mediaType === 'audio') {
                 APP.UI.setAudioMuted(participantId, true);
             } else if (mediaType === 'video') {
@@ -332,35 +328,6 @@ const VideoLayout = {
     },
 
     /**
-     * Shows a visual indicator for the moderator of the conference.
-     * On local or remote participants.
-     */
-    showModeratorIndicator() {
-        const isModerator = APP.conference.isModerator;
-
-        if (isModerator) {
-            localVideoThumbnail.addModeratorIndicator();
-        } else {
-            localVideoThumbnail.removeModeratorIndicator();
-        }
-
-        APP.conference.listMembers().forEach(member => {
-            const id = member.getId();
-            const remoteVideo = remoteVideos[id];
-
-            if (!remoteVideo) {
-                return;
-            }
-
-            if (member.isModerator()) {
-                remoteVideo.addModeratorIndicator();
-            }
-
-            remoteVideo.updateRemoteVideoMenu();
-        });
-    },
-
-    /**
      * On audio muted event.
      */
     onAudioMute(id, isMuted) {
@@ -374,7 +341,7 @@ const VideoLayout = {
             }
 
             remoteVideo.showAudioIndicator(isMuted);
-            remoteVideo.updateRemoteVideoMenu(isMuted);
+            remoteVideo.updateRemoteVideoMenu();
         }
     },
 
@@ -427,20 +394,10 @@ const VideoLayout = {
      * Shows/hides warning about a user's connectivity issues.
      *
      * @param {string} id - The ID of the remote participant(MUC nickname).
-     * @param {status} status - The new connection status.
      * @returns {void}
      */
-    onParticipantConnectionStatusChanged(id, status) {
+    onParticipantConnectionStatusChanged(id) {
         if (APP.conference.isLocalId(id)) {
-            // Maintain old logic of passing in either interrupted or active
-            // to updateConnectionStatus.
-            localVideoThumbnail.updateConnectionStatus(status);
-
-            if (status === JitsiParticipantConnectionStatus.INTERRUPTED) {
-                largeVideo && largeVideo.onVideoInterrupted();
-            } else {
-                largeVideo && largeVideo.onVideoRestored();
-            }
 
             return;
         }
@@ -555,15 +512,11 @@ const VideoLayout = {
 
     /**
      * Resizes the video area.
-     *
-     * TODO: Remove the "animate" param as it is no longer passed in as true.
-     *
-     * @param forceUpdate indicates that hidden thumbnails will be shown
      */
-    resizeVideoArea(animate = false) {
+    resizeVideoArea() {
         if (largeVideo) {
             largeVideo.updateContainerSize();
-            largeVideo.resize(animate);
+            largeVideo.resize(false);
         }
     },
 
@@ -798,7 +751,7 @@ const VideoLayout = {
         APP.remoteControl.checkUserRemoteControlSupport(user)
             .then(result => remoteVideo.setRemoteControlSupport(result))
             .catch(error =>
-                logger.warn('could not get remote control properties', error));
+                logger.warn(`could not get remote control properties for: ${user.getJid()}`, error));
     },
 
     /**
