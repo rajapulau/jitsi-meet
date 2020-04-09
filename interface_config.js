@@ -49,7 +49,7 @@ var interfaceConfig = {
     TOOLBAR_BUTTONS: [
         'microphone','raisehand', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
         'fodeviceselection', 'hangup', 'profile', 'info', 'etherpad', 'settings', 'videoquality',
-        'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 'tileview'
+        'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 'tileview','mute-everyone'
     ],
 
     SETTINGS_SECTIONS: [ 'devices', 'language', 'moderator', 'profile', 'calendar' ],
@@ -72,6 +72,7 @@ var interfaceConfig = {
 
     // A html text to be shown to guests on the close page, false disables it
     CLOSE_PAGE_GUEST_HINT: false,
+    SHOW_PROMOTIONAL_CLOSE_PAGE: false,
     RANDOM_AVATAR_URL_PREFIX: false,
     RANDOM_AVATAR_URL_SUFFIX: false,
     FILM_STRIP_MAX_HEIGHT: 120,
@@ -189,11 +190,8 @@ var interfaceConfig = {
     AUTO_PIN_LATEST_SCREEN_SHARE: 'remote-only',
 
     /**
-     * If we should capture periodic screenshots of the content sharing.
+     * If true, presence status: busy, calling, connected etc. is not displayed.
      */
-    ENABLE_SCREENSHOT_CAPTURE: false,
-
-    // If true, presence status: busy, calling, connected etc. is not displayed
     DISABLE_PRESENCE_STATUS: false,
 
     // If true, notifications regarding joining/leaving are no longer displayed
@@ -205,6 +203,11 @@ var interfaceConfig = {
     * being already installed is done before rendering.
     */
     SHOW_CHROME_EXTENSION_BANNER: false,
+
+    /**
+     * When enabled, the kick participant button will not be presented for users without a JWT
+     */
+    // HIDE_KICK_BUTTON_FOR_GUESTS: false
 
     /**
      * How many columns the tile view can expand to. The respected range is
