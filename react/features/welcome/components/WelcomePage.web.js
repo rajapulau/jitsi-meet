@@ -175,9 +175,9 @@ class WelcomePage extends AbstractWelcomePage {
                 id = 'welcome_page'>
                 <div className = 'welcome-watermark'>
                     <Watermarks />
-                    <div class="container-time">
-                        <div class="time second"><Moment format="hh:mm a" unix>{this.state.now}</Moment></div>
-                        <div class="time"><Moment format="ddd, DD MMM YYYY" unix>{this.state.now}</Moment></div>
+                    <div className="container-time">
+                        <div className="time second"><Moment format="hh:mm a" unix>{this.state.now}</Moment></div>
+                        <div className="time"><Moment format="ddd, DD MMM YYYY" unix>{this.state.now}</Moment></div>
                     </div>
                                      
                 </div>
