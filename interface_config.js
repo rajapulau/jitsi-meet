@@ -223,7 +223,7 @@ var interfaceConfig = {
     /**
      * Specify URL for downloading ios mobile app.
      */
-    MOBILE_DOWNLOAD_LINK_IOS: 'https://beta.itunes.apple.com/v1/app/1504851543',
+    MOBILE_DOWNLOAD_LINK_IOS: 'https://apps.apple.com/us/app/qiscus-meet/id1504851543',
 
     /**
      * Specify mobile app scheme for opening the app from the mobile browser.
