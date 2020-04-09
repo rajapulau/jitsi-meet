@@ -47,7 +47,7 @@ var interfaceConfig = {
      * jwt.
      */
     TOOLBAR_BUTTONS: [
-        'microphone','raisehand', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+        'microphone','raisehand', 'camera', 'closedcaptions', 'desktop', 'fullscreen', 'chat',
         'fodeviceselection', 'hangup', 'profile', 'info', 'etherpad', 'settings', 'videoquality',
         'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 'tileview','mute-everyone'
     ],
