@@ -527,6 +527,7 @@ var config = {
 
     // Allow all above example options to include a trailing comma and
     // prevent fear when commenting out the last value.
+    enableLipSync: false,
     makeJsonParserHappy: 'even if last key had a trailing comma'
 
     // no configuration value should follow this line.
