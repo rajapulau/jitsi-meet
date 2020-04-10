@@ -255,7 +255,7 @@ var config = {
     // useNicks: false,
 
     // Require users to always specify a display name.
-    // requireDisplayName: true,
+    requireDisplayName: true,
 
     // Whether to use a welcome page or not. In case it's false a random room
     // will be joined when no room is specified.
@@ -527,6 +527,7 @@ var config = {
 
     // Allow all above example options to include a trailing comma and
     // prevent fear when commenting out the last value.
+    enableLipSync: false,
     makeJsonParserHappy: 'even if last key had a trailing comma'
 
     // no configuration value should follow this line.
