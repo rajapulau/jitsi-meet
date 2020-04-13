@@ -218,12 +218,12 @@ var interfaceConfig = {
     /**
      * Specify custom URL for downloading android mobile app.
      */
-    MOBILE_DOWNLOAD_LINK_ANDROID: 'https://drive.google.com/file/d/1lxRM7aZyXQ0BCPnWf4MEj7cr746WW6Mz/view?usp=sharing',
+    MOBILE_DOWNLOAD_LINK_ANDROID: 'https://play.google.com/store/apps/details?id=com.qiscus.meet.app',
 
     /**
      * Specify URL for downloading ios mobile app.
      */
-    MOBILE_DOWNLOAD_LINK_IOS: 'https://beta.itunes.apple.com/v1/app/1504851543',
+    MOBILE_DOWNLOAD_LINK_IOS: 'https://apps.apple.com/us/app/qiscus-meet/id1504851543',
 
     /**
      * Specify mobile app scheme for opening the app from the mobile browser.

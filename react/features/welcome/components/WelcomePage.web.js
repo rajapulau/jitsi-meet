@@ -241,6 +241,29 @@ class WelcomePage extends AbstractWelcomePage {
                         className = 'welcome-page-content'
                         ref = { this._setAdditionalContentRef } />
                     : null }
+                <div className='group-download'>
+                        <div>Get Qiscus Meet Apps on your phone.</div>
+                        <div className='container-download'>
+                            <div>
+                                <a
+                                    href = 'https://play.google.com/store/apps/details?id=com.qiscus.meet.app'
+                                    target = '_new'>
+                                        <div
+                                            className = 'android-download' />
+                                </a>
+                            </div>
+                            <div>
+                                <a
+                                    href = 'https://apps.apple.com/us/app/qiscus-meet/id1504851543'
+                                    target = '_new'>
+                                        <div
+                                            className = 'ios-download' />
+                                </a>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
             </div>
         );
     }

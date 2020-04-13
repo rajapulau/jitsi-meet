@@ -50,6 +50,37 @@ body.welcome-page {
     background-size: contain;
     background-position-x: right;
 
+    .group-download{
+        position: relative;
+        top: calc(50% - 24px/2 + 205px);
+        margin-left: 60px;
+        padding-bottom: 150px;
+        font-size: 16px;
+        line-height: 150%;
+        color: #FFFFFF;
+        padding-top: 64px;
+        height: 12px;
+        .container-download{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .android-download{
+            background-image: url(../images/app-playstore.svg);
+            height: 40px;
+            width: 140px;
+            margin-top: 18px;
+            background-repeat: no-repeat;
+        }
+        .ios-download{
+            background-image: url(../images/app-appstore.svg);
+            height: 40px;
+            width: 140px;
+            margin-top: 18px;
+            background-repeat: no-repeat;
+        }
+    }
+
     .header {
         background-image: $welcomePageHeaderBackground;
         background-position: $welcomePageHeaderBackgroundPosition;
