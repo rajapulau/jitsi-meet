@@ -1,6 +1,7 @@
 // @flow
 
 import { openDisplayNamePrompt } from '../../display-name';
+import { beginRoomLockRequest } from '../../room-lock';
 
 import {
     ACTION_PINNED,
@@ -206,6 +207,12 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
         && !getLocalParticipant(getState)?.name
         && !conference.isHidden()) {
         dispatch(openDisplayNamePrompt(undefined));
+    }
+
+    console.log("Ganjar" + conference.room.password)
+
+    if (conference.room.password == undefined || conference.room.password == 'undefined'){
+        dispatch(openDisplayNamePrompt(undefined));    
     }
 
     return result;
