@@ -95,23 +95,24 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
                     shouldFitContainer = { true }
                     type = 'text'
                     value = { this.state.displayName } />
-
-                <div className = 'info-dialog-password'>
-                    <TextField
-                        autoFocus = { true }
-                        compact = { true }
-                        label = { this.props.t('dialog.enterPasswordRoom') }
-                        name = 'passwordRoom'
-                        shouldFitContainer = { true }
-                        className = 'info-password-input'
-                        maxLength = { this.props._passwordNumberOfDigits }
-                        onChange = { this._onEnteredPasswordChange }
-                        pattern = { digitPattern }
-                        placeholder = { placeHolderText }
-                        spellCheck = { 'false' }
-                        type = 'text'
-                        value = { this.state.enteredPassword }  />
-                </div>
+                {(!this.props._locked) &&  
+                    <div className = 'info-dialog-password'>
+                        <TextField
+                            autoFocus = { true }
+                            compact = { true }
+                            label = { this.props.t('dialog.enterPasswordRoom') }
+                            name = 'passwordRoom'
+                            shouldFitContainer = { true }
+                            className = 'info-password-input'
+                            maxLength = { this.props._passwordNumberOfDigits }
+                            onChange = { this._onEnteredPasswordChange }
+                            pattern = { digitPattern }
+                            placeholder = { placeHolderText }
+                            spellCheck = { 'false' }
+                            type = 'text'
+                            value = { this.state.enteredPassword }  />
+                    </div>
+                }
             </Dialog>);
     }
 
@@ -156,9 +157,10 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
      * @returns {boolean}
      */
     _onSubmit() {
-        const { _conference } = this.props;
+        const { _conference, _locked } = this.props;
 
-        this.props.dispatch(setPassword(
+
+        !_locked && this.props.dispatch(setPassword(
             _conference,
             _conference.lock,
             this.state.enteredPassword
