@@ -18,57 +18,6 @@ import {
     getLocalParticipant
 } from '../../../base/participants';
 
-import PasswordForm from '../../../invite/components/info-dialog/web/PasswordForm';
-
-/**
- * The type of the React {@code Component} props of {@link InfoDialog}.
- */
-// type Props = {
-
-//     /**
-//      * Whether or not the current user can modify the current password.
-//      */
-//     _canEditPassword: boolean,
-
-//     /**
-//      * The JitsiConference for which to display a lock state and change the
-//      * password.
-//      */
-//     _conference: Object,
-
-//     /**
-//      * The name of the current conference. Used as part of inviting users.
-//      */
-//     _conferenceName: string,
-
-//      /**
-//      * The redux representation of the local participant.
-//      */
-//     _localParticipantName: ?string,
-
-//     /**
-//      * The value for how the conference is locked (or undefined if not locked)
-//      * as defined by room-lock constants.
-//      */
-//     _locked: string,
-
-//     /**
-//      * The current known password for the JitsiConference.
-//      */
-//     _password: string,
-
-//     /**
-//      * The number of digits to be used in the password.
-//      */
-//     _passwordNumberOfDigits: ?number,
-
-//     /**
-//      * Invoked to open a dialog for adding participants to the conference.
-//      */
-//     dispatch: Dispatch<any>
-
-// };
-
 /**
  * The type of the React {@code Component} props of {@link DisplayNamePrompt}.
  */
@@ -102,12 +51,13 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
 
         this.state = {
             displayName: (props._localParticipantName) ? props._localParticipantName : '',
-            passwordConf: '',
+            enteredPassword: '',
             passwordEditEnabled: true
         };
 
         // Bind event handlers so they are only bound once for every instance.
         this._onDisplayNameChange = this._onDisplayNameChange.bind(this);
+        this._onEnteredPasswordChange = this._onEnteredPasswordChange.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
         this._onPasswordRemove = this._onPasswordRemove.bind(this);
         this._onPasswordSubmit = this._onPasswordSubmit.bind(this);
@@ -122,6 +72,14 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
      * @returns {ReactElement}
      */
     render() {
+        let digitPattern, placeHolderText;
+
+        if (this.props.passwordNumberOfDigits) {
+            placeHolderText = this.props.t('passwordDigitsOnly', {
+                number: this.props.passwordNumberOfDigits });
+            digitPattern = '\\d*';
+        }
+
         return (
             <Dialog
                 isModal = { false }
@@ -139,29 +97,25 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
                     value = { this.state.displayName } />
 
                 <div className = 'info-dialog-password'>
-                    <PasswordForm
-                        editEnabled = { this.state.passwordEditEnabled }
-                        locked = { this.props._locked }
-                        onSubmit = { this._onPasswordSubmit }
-                        password = { this.props._password }
-                        passwordNumberOfDigits = { this.props._passwordNumberOfDigits } />
-                </div>
-                <div className = 'info-dialog-action-links'>
-                    <div className = 'info-dialog-action-link'>
-                        {/* <a
-                            className = 'info-copy'
-                            onClick = { this._onCopyInviteInfo }>
-                            { t('dialog.copy') }
-                        </a> */}
-                    </div>
-                    {/* { this._renderPasswordAction() } */}
+                    <TextField
+                        autoFocus = { true }
+                        compact = { true }
+                        label = { this.props.t('dialog.enterPasswordRoom') }
+                        name = 'passwordRoom'
+                        shouldFitContainer = { true }
+                        className = 'info-password-input'
+                        maxLength = { this.props._passwordNumberOfDigits }
+                        onChange = { this._onEnteredPasswordChange }
+                        pattern = { digitPattern }
+                        placeholder = { placeHolderText }
+                        spellCheck = { 'false' }
+                        type = 'text'
+                        value = { this.state.enteredPassword }  />
                 </div>
             </Dialog>);
     }
 
     _onDisplayNameChange: (Object) => void;
-
-    _onPasswordChange: (Object) => void;
 
     /**
      * Updates the entered display name.
@@ -177,12 +131,19 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
         });
     }
 
-    _onPasswordChange(event) {
-        this.setState({
-            passwordConf: event.target.value
-        });
-    }
+    _onEnteredPasswordChange: (Object) => void;
 
+    /**
+     * Updates the internal state of entered password.
+     *
+     * @param {Object} event - DOM Event for value change.
+     * @private
+     * @returns {void}
+     */
+    _onEnteredPasswordChange(event) {
+        this.setState({ enteredPassword: event.target.value });
+    }
+    
     _onSetDisplayName: string => boolean;
 
     _onSubmit: () => boolean;
@@ -200,7 +161,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
         this.props.dispatch(setPassword(
             _conference,
             _conference.lock,
-            this.state.passwordConf
+            this.state.enteredPassword
         ));
 
         return this._onSetDisplayName(this.state.displayName);
@@ -252,44 +213,6 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
             passwordEditEnabled: !this.state.passwordEditEnabled
         });
     }
-
-    /**
-     * Returns a ReactElement for interacting with the password field.
-     *
-     * @private
-     * @returns {null|ReactElement}
-     */
-    _renderPasswordAction() {
-        const { t } = this.props;
-        let className, onClick, textKey;
-
-
-        if (!this.props._canEditPassword) {
-            // intentionally left blank to prevent rendering anything
-        } else if (this.state.passwordEditEnabled) {
-            className = 'cancel-password';
-            onClick = this._onTogglePasswordEditState;
-            textKey = 'info.cancelPassword';
-        } else if (this.props._locked) {
-            className = 'remove-password';
-            onClick = this._onPasswordRemove;
-            textKey = 'dialog.removePassword';
-        } else {
-            className = 'add-password';
-            onClick = this._onTogglePasswordEditState;
-            textKey = 'info.addPassword';
-        }
-
-        return className && onClick && textKey
-            ? <div className = 'info-dialog-action-link'>
-                <a
-                    className = { className }
-                    onClick = { onClick }>
-                    { t(textKey) }
-                </a>
-            </div>
-            : null;
-    }
 }
 
 /**
@@ -323,9 +246,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
            _conference: conference,
            _conferenceName: room,
            _passwordNumberOfDigits: state['features/base/config'].roomPasswordNumberOfDigits,
-        //    _inviteURL: getInviteURL(state),
            _localParticipantName: localParticipant?.name,
-        //    _locationURL: state['features/base/connection'].locationURL,
            _locked: locked,
            _password: password
        };

@@ -176,6 +176,7 @@
         "displayNameRequired": "Hi! What’s your name?",
         "done": "Done",
         "enterDisplayName": "Please enter your name here",
+        "enterPasswordRoom": "Please enter your conference password",
         "error": "Error",
         "externalInstallationMsg": "You need to install our desktop sharing extension.",
         "externalInstallationTitle": "Extension required",
