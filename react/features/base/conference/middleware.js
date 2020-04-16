@@ -209,8 +209,6 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
         dispatch(openDisplayNamePrompt(undefined));
     }
 
-    console.log("Ganjar" + conference.room.password)
-
     if (conference.room.password == undefined || conference.room.password == 'undefined'){
         dispatch(openDisplayNamePrompt(undefined));    
     }
