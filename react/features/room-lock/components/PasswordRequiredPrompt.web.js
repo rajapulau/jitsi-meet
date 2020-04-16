@@ -70,6 +70,11 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
+        this.state = {
+            displayName: (this.props._localParticipantName) ? this.props._localParticipantName : '',
+            password: ''
+        };
+
         // Bind event handlers so they are only bound once per instance.
         this._onPasswordChanged = this._onPasswordChanged.bind(this);
         this._onDisplayNameChange = this._onDisplayNameChange.bind(this);

@@ -100,7 +100,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
                     shouldFitContainer = { true }
                     type = 'text'
                     value = { this.state.displayName } />
-                {(!this.props._locked) &&  
+                {(this.props._canEditPassword) &&  
                     <div className = 'info-dialog-password'>
                         <TextField
                             required

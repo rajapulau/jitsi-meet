@@ -203,13 +203,14 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
     };
     window.addEventListener('beforeunload', beforeUnloadHandler);
 
+    console.log("ganjar "+ getLocalParticipant(getState)?.name)
     if (requireDisplayName
         && !getLocalParticipant(getState)?.name
         && !conference.isHidden()) {
         dispatch(openDisplayNamePrompt(undefined));
     }
 
-    if (conference.room.password == undefined || conference.room.password == 'undefined'){
+    if (conference.getParticipantCount() < 2){
         dispatch(openDisplayNamePrompt(undefined));    
     }
 
