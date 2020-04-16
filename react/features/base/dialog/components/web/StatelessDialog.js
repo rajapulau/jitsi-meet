@@ -119,9 +119,9 @@ class StatelessDialog extends Component<Props> {
                 footer = { this._renderFooter }
                 heading = { titleString || t(titleKey) }
                 i18n = { this.props.i18n }
-                onClose = { this._onDialogDismissed }
-                onDialogDismissed = { this._onDialogDismissed }
-                shouldCloseOnEscapePress = { true }
+                // onClose = { this._onDialogDismissed }
+                // onDialogDismissed = { this._onDialogDismissed }
+                shouldCloseOnEscapePress = { false }
                 width = { width || 'medium' }>
                 <div
                     onKeyDown = { this._onKeyDown }

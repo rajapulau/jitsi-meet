@@ -6,6 +6,8 @@ import { FieldTextStateless as TextField } from '@atlaskit/field-text';
 import { Dialog } from '../../../base/dialog';
 import { translate } from '../../../base/i18n';
 import { connect } from '../../../base/redux';
+import { disconnect } from '../../../base/connection';
+import { appNavigate } from '../../../app';
 
 import AbstractDisplayNamePrompt, {
     type Props
@@ -59,6 +61,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
         this._onDisplayNameChange = this._onDisplayNameChange.bind(this);
         this._onEnteredPasswordChange = this._onEnteredPasswordChange.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
+        this._onCancel = this._onCancel.bind(this);
         this._onPasswordRemove = this._onPasswordRemove.bind(this);
         this._onPasswordSubmit = this._onPasswordSubmit.bind(this);
         this._onTogglePasswordEditState
@@ -84,9 +87,11 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
             <Dialog
                 isModal = { false }
                 onSubmit = { this._onSubmit }
+                onCancel = { this._onCancel }
                 titleKey = 'dialog.displayNameRequired'
                 width = 'small'>
                 <TextField
+                    required
                     autoFocus = { true }
                     compact = { true }
                     label = { this.props.t('dialog.enterDisplayName') }
@@ -98,6 +103,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
                 {(!this.props._locked) &&  
                     <div className = 'info-dialog-password'>
                         <TextField
+                            required
                             autoFocus = { true }
                             compact = { true }
                             label = { this.props.t('dialog.enterPasswordRoom') }
@@ -166,8 +172,19 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
             this.state.enteredPassword
         ));
 
-        return this._onSetDisplayName(this.state.displayName);
+        if(this.state.enteredPassword == ''){
+            return false;
+        } else {
+            return this._onSetDisplayName(this.state.displayName);
+        }        
     }
+
+    _onCancel: () => boolean;
+
+    _onCancel() {
+        return this.props.dispatch(disconnect(false));
+    }
+
 
     _onPasswordRemove: () => void;
 
