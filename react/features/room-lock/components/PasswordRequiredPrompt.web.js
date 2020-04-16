@@ -11,6 +11,12 @@ import { connect } from '../../base/redux';
 
 import { _cancelPasswordRequiredPrompt } from '../actions';
 
+import {
+    getLocalParticipant
+} from '../../base/participants';
+
+import { updateSettings } from '../../base/settings';
+
 /**
  * The type of the React {@code Component} props of
  * {@link PasswordRequiredPrompt}.
@@ -51,6 +57,7 @@ type State = {
  */
 class PasswordRequiredPrompt extends Component<Props, State> {
     state = {
+        displayName: '',
         password: ''
     };
 
@@ -65,6 +72,7 @@ class PasswordRequiredPrompt extends Component<Props, State> {
 
         // Bind event handlers so they are only bound once per instance.
         this._onPasswordChanged = this._onPasswordChanged.bind(this);
+        this._onDisplayNameChange = this._onDisplayNameChange.bind(this);
         this._onCancel = this._onCancel.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
     }
@@ -99,6 +107,17 @@ class PasswordRequiredPrompt extends Component<Props, State> {
         return (
             <div>
                 <TextField
+                    required
+                    autoFocus = { true }
+                    compact = { true }
+                    label = { this.props.t('dialog.enterDisplayName') }
+                    name = 'displayName'
+                    onChange = { this._onDisplayNameChange }
+                    shouldFitContainer = { true }
+                    type = 'text'
+                    value = { this.state.displayName } />
+
+                <TextField
                     autoFocus = { true }
                     compact = { true }
                     label = { this.props.t('dialog.passwordLabel') }
@@ -109,6 +128,22 @@ class PasswordRequiredPrompt extends Component<Props, State> {
                     value = { this.state.password } />
             </div>
         );
+    }
+
+    _onDisplayNameChange: (Object) => void;
+
+    /**
+     * Updates the entered display name.
+     *
+     * @param {Object} event - The DOM event triggered from the entered display
+     * name value having changed.
+     * @private
+     * @returns {void}
+     */
+    _onDisplayNameChange(event) {
+        this.setState({
+            displayName: event.target.value
+        });
     }
 
     _onPasswordChanged: ({ target: { value: * }}) => void;
@@ -125,6 +160,8 @@ class PasswordRequiredPrompt extends Component<Props, State> {
             password: value
         });
     }
+
+    _onSetDisplayName: string => boolean;
 
     _onCancel: () => boolean;
 
@@ -151,7 +188,17 @@ class PasswordRequiredPrompt extends Component<Props, State> {
      * @returns {boolean}
      */
     _onSubmit() {
-        const { conference } = this.props;
+        const { conference, dispatch } = this.props;
+        let displayName = this.state.displayName;
+
+        if (!displayName || !displayName.trim()) {
+            return false;
+        }
+
+        // Store display name in settings
+        dispatch(updateSettings({
+            displayName
+        }));
 
         // We received that password is required, but user is trying anyway to
         // login without a password. Mark the room as not locked in case she
@@ -170,4 +217,29 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     }
 }
 
-export default translate(connect()(PasswordRequiredPrompt));
+/**
+ * Maps (parts of) the Redux state to the associated props for the
+ * {@code InfoDialog} component.
+ *
+ * @param {Object} state - The Redux state.
+ * @private
+ * @returns {{
+    *     _canEditPassword: boolean,
+    *     _conference: Object,
+    *     _conferenceName: string,
+    *     _inviteURL: string,
+    *     _localParticipantName: ?string,
+    *     _locationURL: string,
+    *     _locked: string,
+    *     _password: string
+    * }}
+    */
+   function _mapStateToProps(state) {
+       const localParticipant = getLocalParticipant(state);
+   
+       return {
+           _localParticipantName: localParticipant?.name
+       };
+   }
+
+export default translate(connect(_mapStateToProps)(PasswordRequiredPrompt));
