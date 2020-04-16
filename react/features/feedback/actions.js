@@ -126,7 +126,6 @@ export function submitFeedback(
         message: string,
         conference: Object) {
         
-            debugger
         return dispatch => {
             const requestOptions = {
                 method: 'POST',
@@ -146,17 +145,4 @@ export function submitFeedback(
                     });
                 })
         }
-
-    // return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
-    //     .then(
-    //         () => dispatch({ type: SUBMIT_FEEDBACK_SUCCESS }),
-    //         error => {
-    //             dispatch({
-    //                 type: SUBMIT_FEEDBACK_ERROR,
-    //                 error
-    //             });
-
-    //             return Promise.reject(error);
-    //         }
-    //     );
 }
