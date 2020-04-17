@@ -540,6 +540,7 @@
         "speakers": "Speakers",
         "startAudioMuted": "Everyone starts muted",
         "startVideoMuted": "Everyone starts hidden",
+        "startWithAudioOnly": "Start with audio only",
         "title": "Settings"
     },
     "settingsView": {

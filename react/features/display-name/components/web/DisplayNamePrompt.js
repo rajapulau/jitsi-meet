@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { FieldTextStateless as TextField } from '@atlaskit/field-text';
+import { Checkbox } from '@atlaskit/checkbox';
 
 import { Dialog } from '../../../base/dialog';
 import { translate } from '../../../base/i18n';
@@ -19,6 +20,8 @@ import {
     isLocalParticipantModerator,
     getLocalParticipant
 } from '../../../base/participants';
+
+import { updateSettings } from '../../../base/settings';
 
 /**
  * The type of the React {@code Component} props of {@link DisplayNamePrompt}.
@@ -54,11 +57,13 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
         this.state = {
             displayName: (props._localParticipantName) ? props._localParticipantName : '',
             enteredPassword: '',
-            passwordEditEnabled: true
+            passwordEditEnabled: true,
+            startAudioOnly: props._settings.startAudioOnly
         };
 
         // Bind event handlers so they are only bound once for every instance.
         this._onDisplayNameChange = this._onDisplayNameChange.bind(this);
+        this._onStartWithVideoMuted = this._onStartWithVideoMuted.bind(this);
         this._onEnteredPasswordChange = this._onEnteredPasswordChange.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
         this._onCancel = this._onCancel.bind(this);
@@ -90,6 +95,13 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
                 onCancel = { this._onCancel }
                 titleKey = 'dialog.displayNameRequired'
                 width = 'small'>
+                <Checkbox
+                    isChecked = { this.state.startAudioOnly }
+                    label = { this.props.t('settings.startWithAudioOnly') }
+                    name = 'start-video-muted'
+                    onChange = { this._onStartWithVideoMuted }
+                     />
+
                 <TextField
                     required
                     autoFocus = { true }
@@ -150,6 +162,19 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
     _onEnteredPasswordChange(event) {
         this.setState({ enteredPassword: event.target.value });
     }
+
+    _onStartWithVideoMuted: (Object) => void;
+
+    /**
+     * Updates the internal state of entered password.
+     *
+     * @param {Object} event - DOM Event for value change.
+     * @private
+     * @returns {void}
+     */
+    _onStartWithVideoMuted(event) {
+        this.setState({ startAudioOnly: event.target.checked });
+    }
     
     _onSetDisplayName: string => boolean;
 
@@ -164,7 +189,11 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
      */
     _onSubmit() {
         const { _conference, _locked } = this.props;
+        let startAudioOnly = this.state.startAudioOnly
 
+        this.props.dispatch(updateSettings({
+            startAudioOnly
+        }));
 
         !_locked && this.props.dispatch(setPassword(
             _conference,
@@ -267,7 +296,8 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
            _passwordNumberOfDigits: state['features/base/config'].roomPasswordNumberOfDigits,
            _localParticipantName: localParticipant?.name,
            _locked: locked,
-           _password: password
+           _password: password,
+           _settings: state['features/base/settings']
        };
    }
 export default translate(connect(_mapStateToProps)(DisplayNamePrompt));
