@@ -1,6 +1,7 @@
 // @flow
 
 import { FieldTextStateless as TextField } from '@atlaskit/field-text';
+import { Checkbox } from '@atlaskit/checkbox';
 import React, { Component } from 'react';
 import type { Dispatch } from 'redux';
 
@@ -72,11 +73,13 @@ class PasswordRequiredPrompt extends Component<Props, State> {
 
         this.state = {
             displayName: (this.props._localParticipantName) ? this.props._localParticipantName : '',
+            startAudioOnly: props._settings.startAudioOnly,
             password: ''
         };
 
         // Bind event handlers so they are only bound once per instance.
         this._onPasswordChanged = this._onPasswordChanged.bind(this);
+        this._onStartWithVideoMuted = this._onStartWithVideoMuted.bind(this);
         this._onDisplayNameChange = this._onDisplayNameChange.bind(this);
         this._onCancel = this._onCancel.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
@@ -111,6 +114,13 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     _renderBody() {
         return (
             <div>
+                <Checkbox
+                    isChecked = { this.state.startAudioOnly }
+                    label = { this.props.t('settings.startWithAudioOnly') }
+                    name = 'start-video-muted'
+                    onChange = { this._onStartWithVideoMuted }
+                     />
+
                 <TextField
                     required
                     autoFocus = { true }
@@ -166,6 +176,19 @@ class PasswordRequiredPrompt extends Component<Props, State> {
         });
     }
 
+    _onStartWithVideoMuted: (Object) => void;
+
+    /**
+     * Updates the internal state of entered password.
+     *
+     * @param {Object} event - DOM Event for value change.
+     * @private
+     * @returns {void}
+     */
+    _onStartWithVideoMuted(event) {
+        this.setState({ startAudioOnly: event.target.checked });
+    }
+
     _onSetDisplayName: string => boolean;
 
     _onCancel: () => boolean;
@@ -195,6 +218,11 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     _onSubmit() {
         const { conference, dispatch } = this.props;
         let displayName = this.state.displayName;
+        let startAudioOnly = this.state.startAudioOnly
+
+        dispatch(updateSettings({
+            startAudioOnly
+        }));
 
         if (!displayName || !displayName.trim()) {
             return false;
@@ -243,7 +271,8 @@ class PasswordRequiredPrompt extends Component<Props, State> {
        const localParticipant = getLocalParticipant(state);
    
        return {
-           _localParticipantName: localParticipant?.name
+           _localParticipantName: localParticipant?.name,
+           _settings: state['features/base/settings']
        };
    }
 
