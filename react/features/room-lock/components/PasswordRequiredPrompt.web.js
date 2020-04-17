@@ -73,7 +73,7 @@ class PasswordRequiredPrompt extends Component<Props, State> {
 
         this.state = {
             displayName: (this.props._localParticipantName) ? this.props._localParticipantName : '',
-            startAudioOnly: props._settings.startAudioOnly,
+            startWithVideoMuted: props._settings.startWithVideoMuted,
             password: ''
         };
 
@@ -115,7 +115,7 @@ class PasswordRequiredPrompt extends Component<Props, State> {
         return (
             <div>
                 <Checkbox
-                    isChecked = { this.state.startAudioOnly }
+                    isChecked = { this.state.startWithVideoMuted }
                     label = { this.props.t('settings.startWithAudioOnly') }
                     name = 'start-video-muted'
                     onChange = { this._onStartWithVideoMuted }
@@ -186,7 +186,7 @@ class PasswordRequiredPrompt extends Component<Props, State> {
      * @returns {void}
      */
     _onStartWithVideoMuted(event) {
-        this.setState({ startAudioOnly: event.target.checked });
+        this.setState({ startWithVideoMuted: event.target.checked });
     }
 
     _onSetDisplayName: string => boolean;
@@ -218,11 +218,12 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     _onSubmit() {
         const { conference, dispatch } = this.props;
         let displayName = this.state.displayName;
-        let startAudioOnly = this.state.startAudioOnly
+        let startWithVideoMuted = this.state.startWithVideoMuted
 
         dispatch(updateSettings({
-            startAudioOnly
+            startWithVideoMuted
         }));
+        APP.conference.muteVideo(startWithVideoMuted)
 
         if (!displayName || !displayName.trim()) {
             return false;

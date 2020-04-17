@@ -8,7 +8,6 @@ import { Dialog } from '../../../base/dialog';
 import { translate } from '../../../base/i18n';
 import { connect } from '../../../base/redux';
 import { disconnect } from '../../../base/connection';
-import { appNavigate } from '../../../app';
 
 import AbstractDisplayNamePrompt, {
     type Props
@@ -58,7 +57,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
             displayName: (props._localParticipantName) ? props._localParticipantName : '',
             enteredPassword: '',
             passwordEditEnabled: true,
-            startAudioOnly: props._settings.startAudioOnly
+            startWithVideoMuted: props._settings.startWithVideoMuted
         };
 
         // Bind event handlers so they are only bound once for every instance.
@@ -96,7 +95,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
                 titleKey = 'dialog.displayNameRequired'
                 width = 'small'>
                 <Checkbox
-                    isChecked = { this.state.startAudioOnly }
+                    isChecked = { this.state.startWithVideoMuted }
                     label = { this.props.t('settings.startWithAudioOnly') }
                     name = 'start-video-muted'
                     onChange = { this._onStartWithVideoMuted }
@@ -173,7 +172,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
      * @returns {void}
      */
     _onStartWithVideoMuted(event) {
-        this.setState({ startAudioOnly: event.target.checked });
+        this.setState({ startWithVideoMuted: event.target.checked });
     }
     
     _onSetDisplayName: string => boolean;
@@ -188,12 +187,14 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
      * @returns {boolean}
      */
     _onSubmit() {
-        const { _conference, _locked } = this.props;
-        let startAudioOnly = this.state.startAudioOnly
+        const { _conference, _locked, _tracks } = this.props;
+        let startWithVideoMuted = this.state.startWithVideoMuted
 
         this.props.dispatch(updateSettings({
-            startAudioOnly
+            startWithVideoMuted
         }));
+
+        APP.conference.muteVideo(startWithVideoMuted)
 
         !_locked && this.props.dispatch(setPassword(
             _conference,
