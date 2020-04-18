@@ -55,7 +55,7 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
 
         this.state = {
             displayName: (props._localParticipantName) ? props._localParticipantName : '',
-            enteredPassword: '',
+            enteredPassword: Math.random().toString(36).substring(4),
             passwordEditEnabled: true,
             startWithVideoMuted: props._settings.startWithVideoMuted
         };
