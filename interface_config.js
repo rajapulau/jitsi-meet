@@ -49,7 +49,7 @@ var interfaceConfig = {
     TOOLBAR_BUTTONS: [
         'microphone','raisehand', 'camera', 'closedcaptions', 'desktop', 'fullscreen', 'chat',
         'fodeviceselection', 'hangup', 'profile', 'info', 'etherpad', 'settings', 'videoquality',
-        'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 'tileview','mute-everyone'
+        'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 'tileview','mute-everyone','e2ee'
     ],
 
     SETTINGS_SECTIONS: [ 'devices', 'language', 'moderator', 'profile', 'calendar' ],
