@@ -50,6 +50,17 @@ body.welcome-page {
     background-size: contain;
     background-position-x: right;
 
+    .meet-bottom{
+        padding-top: 36px;
+        a.info{
+            color: #FFFFFF;
+        }
+        a.info:after{
+            content:url(../images/arrow.svg);
+            margin: 0 0 0 20px;
+        }
+    }
+
     .group-download{
         position: relative;
         top: calc(50% - 24px/2 + 205px);

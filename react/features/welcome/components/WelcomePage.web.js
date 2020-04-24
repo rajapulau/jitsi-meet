@@ -178,8 +178,7 @@ class WelcomePage extends AbstractWelcomePage {
                     <div className="container-time">
                         <div className="time second"><Moment format="hh:mm a" unix>{this.state.now}</Moment></div>
                         <div className="time"><Moment format="ddd, DD MMM YYYY" unix>{this.state.now}</Moment></div>
-                    </div>
-                                     
+                    </div>              
                 </div>
                 <div className = 'welcome-page-settings'>
                         <SettingsButton
@@ -261,6 +260,13 @@ class WelcomePage extends AbstractWelcomePage {
                                 </a>
                             </div>
                             
+                        </div>
+                        <div className='meet-bottom'>
+                            <a
+                                href = 'https://support.qiscus.com/hc/en-us/articles/900000470446-What-is-Tech-Stack-Behind-Qiscus-Meet'
+                                target = '_new' className='info'>
+                                    Tech Stack Behind Qiscus Meet
+                            </a>
                         </div>
                         
                     </div>
