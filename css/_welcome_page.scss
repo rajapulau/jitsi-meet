@@ -38,17 +38,17 @@ body.welcome-page {
 }
 
 .welcome {
-    background-image: $welcomePageBackground;
-    background-color: #01416C;
-    background-repeat: no-repeat;
+    background: $welcomePageBackground;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     font-family: $welcomePageFontFamily;
     justify-content: space-between;
     min-height: 100vh;
     position: relative;
-    background-size: contain;
-    background-position-x: right;
 
     .meet-bottom{
         padding-top: 36px;
