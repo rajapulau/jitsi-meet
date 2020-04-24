@@ -118,7 +118,7 @@ var config = {
              height: {
                  ideal: 360,
                  max: 360,
-                 min: 180
+                 min: 360
              }
          }
      },
