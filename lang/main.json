@@ -762,7 +762,7 @@
             "join": "Tap to join",
             "roomname": "Enter room name"
         },
-        "appDescription": "Conference Call with your team using Qiscus Meet. Cool video technology that built on top of Qiscus Meet SDK.",
+        "appDescription": "Built on top of Qiscus Meet SDK, Qiscus Meet has it all from video to voice conference call. Start build your own conferencing app today. Contact us for more information.",
         "audioVideoSwitch": {
             "audio": "Voice",
             "video": "Video"
@@ -786,7 +786,7 @@
         "roomnameHint": "Enter the name or URL of the room you want to join. You may make a name up, just let the people you are meeting know it so that they enter the same name.",
         "sendFeedback": "Send feedback",
         "terms": "Terms",
-        "title": "Fully featured video conferencing"
+        "title": "Secured and Comprehensive Conferencing Call with Your Team"
     },
     "lonelyMeetingExperience": {
         "button": "Invite others",

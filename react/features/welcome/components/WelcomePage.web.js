@@ -175,20 +175,26 @@ class WelcomePage extends AbstractWelcomePage {
                 id = 'welcome_page'>
                 <div className = 'welcome-watermark'>
                     <Watermarks />
-                    <div className="container-time">
-                        <div className="time second"><Moment format="hh:mm a" unix>{this.state.now}</Moment></div>
-                        <div className="time"><Moment format="ddd, DD MMM YYYY" unix>{this.state.now}</Moment></div>
-                    </div>              
                 </div>
                 <div className = 'welcome-page-settings'>
-                        <SettingsButton
-                            defaultTab = { SETTINGS_TABS.CALENDAR } />
-                        { showAdditionalToolbarContent
-                            ? <div
-                                className = 'settings-toolbar-content'
-                                ref = { this._setAdditionalToolbarContentRef } />
-                            : null
-                        }
+                        <div className='meet-top'>
+                            <a
+                                href = 'https://support.qiscus.com/hc/en-us/articles/900000470446-What-is-Tech-Stack-Behind-Qiscus-Meet'
+                                target = '_new' className='info'>
+                                    Tech Stack
+                            </a>
+                            
+                            <a
+                                href = 'https://support.qiscus.com/hc/en-us/sections/360001322973-Qiscus-Meet-SDK'
+                                target = '_new' className='info'>
+                                    FAQ
+                            </a>
+                            <a
+                                href = 'https://www.qiscus.com/contact'
+                                target = '_new' className='info'>
+                                    Contact Us
+                            </a>
+                        </div>
                     </div>
                 <div className = 'header'>
                     <div className = 'header-image' />
@@ -197,10 +203,6 @@ class WelcomePage extends AbstractWelcomePage {
                         <h1 className = 'header-text-title'>
                             { t('welcomepage.title') }
                         </h1>
-                        <p className = 'header-text-description'>
-                            { t('welcomepage.appDescription',
-                                { app: APP_NAME }) }
-                        </p>
                     </div>
                     
                     <div id = 'enter_room'>
@@ -240,8 +242,34 @@ class WelcomePage extends AbstractWelcomePage {
                         className = 'welcome-page-content'
                         ref = { this._setAdditionalContentRef } />
                     : null }
+                
                 <div className='group-download'>
-                        <div>Get Qiscus Meet Apps on your phone.</div>
+                <div className='line'></div>
+                        <div className = 'middle-text col-4'>
+                            <p className = 'middle-text-description'>
+                                { t('welcomepage.appDescription',
+                                    { app: APP_NAME }) }
+                            </p>
+                        </div>
+                    
+                        <div className='footer'>
+                            <div className='container'>
+                                <div class="contact-us-button">
+                                    <a
+                                        href = 'https://www.qiscus.com/contact'
+                                        target = '_new' className='info'>
+                                            Contact Us
+                                    </a>
+                                </div>
+                            </div>
+                            <div className='container'>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='group-download meet-bottom'>
+                        <p>Get <b>Qiscus Meet</b> Apps on your phone.</p>
                         <div className='container-download'>
                             <div>
                                 <a
@@ -261,15 +289,8 @@ class WelcomePage extends AbstractWelcomePage {
                             </div>
                             
                         </div>
-                        <div className='meet-bottom'>
-                            <a
-                                href = 'https://support.qiscus.com/hc/en-us/articles/900000470446-What-is-Tech-Stack-Behind-Qiscus-Meet'
-                                target = '_new' className='info'>
-                                    Tech Stack Behind Qiscus Meet
-                            </a>
-                        </div>
-                        
                     </div>
+
             </div>
         );
     }
