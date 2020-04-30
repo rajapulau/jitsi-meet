@@ -114,8 +114,8 @@ var config = {
          video: {
              height: {
                  ideal: 360,
-                 max: 360,
-                 min: 180
+                 max: 720,
+                 min: 360
              }
          }
      },
