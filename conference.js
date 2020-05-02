@@ -19,7 +19,6 @@ import {
     createDeviceChangedEvent,
     createStartSilentEvent,
     createScreenSharingEvent,
-    createStreamSwitchDelayEvent,
     createTrackMutedEvent,
     sendAnalytics
 } from './react/features/analytics';
@@ -1817,7 +1816,7 @@ export default {
                 const desktopVideoStream = streams.find(stream => stream.getType() === MEDIA_TYPE.VIDEO);
 
                 if (desktopVideoStream) {
-                    this.useVideoStream(desktopVideoStream);
+                    await this.useVideoStream(desktopVideoStream);
                 }
 
                 this._desktopAudioStream = streams.find(stream => stream.getType() === MEDIA_TYPE.AUDIO);
@@ -2262,18 +2261,6 @@ export default {
                 }
             });
         });
-
-        /* eslint-disable max-params */
-        APP.UI.addListener(
-            UIEvents.RESOLUTION_CHANGED,
-            (id, oldResolution, newResolution, delay) => {
-                sendAnalytics(createStreamSwitchDelayEvent(
-                    {
-                        'old_resolution': oldResolution,
-                        'new_resolution': newResolution,
-                        value: delay
-                    }));
-            });
 
         APP.UI.addListener(UIEvents.AUTH_CLICKED, () => {
             AuthHandler.authenticate(room);
@@ -2842,7 +2829,7 @@ export default {
     leaveRoomAndDisconnect() {
         APP.store.dispatch(conferenceWillLeave(room));
 
-        if (room.isJoined()) {
+        if (room && room.isJoined()) {
             return room.leave().then(disconnect, disconnect);
         }
 
