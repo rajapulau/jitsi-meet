@@ -1,6 +1,4 @@
 .info-dialog {
-    background: #FFFFFF !important;
-    color: #01416C !important;
     cursor: default;
     display: flex;
     font-size: 14px;
@@ -82,11 +80,6 @@
         color: #6453C0;
         font-size: 16px;
         min-width: 30px;
-        .jitsi-icon{
-            svg {
-                fill: #01416C;
-            }
-        }
     }
 
     .info-dialog-url-text,
