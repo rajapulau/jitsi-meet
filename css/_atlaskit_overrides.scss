@@ -49,6 +49,10 @@
  * Override @atlaskit/InlineDialog styling for the overflowmenu so it displays
  * with the correct height.
  */
+ .toolbox-button-wth-dialog {
+    background: #FFFFFF !important;
+}
+
 .toolbox-button-wth-dialog .eYJELv {
     max-height: initial;
     background: #FFFFFF !important;
