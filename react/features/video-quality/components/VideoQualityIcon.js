@@ -27,7 +27,7 @@ const VIDEO_QUALITY_TO_ICON = {
 
 /**
  * The type of the React {@code Component} props of
- * {@link MenuVideoQualityIcon}.
+ * {@link VideoQualityIcon}.
  */
 type Props = {
 
@@ -38,12 +38,12 @@ type Props = {
 
     /**
      * The currently configured maximum quality resolution to be received from
-     * remote participants.
+     * and sent to remote participants.
      */
-    _receiverVideoQuality: number,
+    _videoQuality: number,
 
     /**
-     * Callback to invoke when {@link MenuVideoQualityIcon} is clicked.
+     * Callback to invoke when {@link VideoQualityIcon} is clicked.
      */
     onClick: Function,
 
@@ -60,7 +60,7 @@ type Props = {
  *
  * @extends Component
  */
-class MenuVideoQualityIcon extends Component<Props> {
+class VideoQualityIcon extends Component<Props> {
     /**
      * Implements React's {@link Component#render()}.
      *
@@ -68,43 +68,42 @@ class MenuVideoQualityIcon extends Component<Props> {
      * @returns {ReactElement}
      */
     render() {
-        const { _audioOnly, _receiverVideoQuality } = this.props;
-        const icon = _audioOnly || !_receiverVideoQuality
+        const { _audioOnly, _videoQuality } = this.props;
+        const icon = _audioOnly || !_videoQuality
             ? IconVideoQualityAudioOnly
-            : VIDEO_QUALITY_TO_ICON[_receiverVideoQuality];
+            : VIDEO_QUALITY_TO_ICON[_videoQuality];
 
         return (
-                <span 
+            <span 
                 className = 'toolbox-button-wth-dialog'
                 onClick = { this.props.onClick }>
-                    <div className= 'toolbox-button'>
-                        <div className='toolbox-icon '>
-                        <Icon src = { icon } />
-                        </div>
+                <div className= 'toolbox-button'>
+                    <div className='toolbox-icon '>
+                    <Icon src = { icon } />
                     </div>
-                </span>
+                </div>
+            </span>
         );
     }
 }
 
 /**
  * Maps (parts of) the Redux state to the associated props for the
- * {@code MenuVideoQualityIcon} component.
+ * {@code VideoQualityIcon} component.
  *
  * @param {Object} state - The Redux state.
  * @private
  * @returns {{
  *     _audioOnly: boolean,
- *     _receiverVideoQuality: number
+ *     _videoQuality: number
  * }}
  */
 function _mapStateToProps(state) {
     return {
         _audioOnly: state['features/base/audio-only'].enabled,
-        _receiverVideoQuality:
-            state['features/base/conference'].preferredReceiverVideoQuality
+        _videoQuality: state['features/base/conference'].preferredVideoQuality
     };
 }
 
 export default translate(
-    connect(_mapStateToProps)(MenuVideoQualityIcon));
+    connect(_mapStateToProps)(VideoQualityIcon));
