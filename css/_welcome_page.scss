@@ -1,6 +1,11 @@
 body.welcome-page {
     overflow: auto;
     background-color: #01416C;
+    background: $welcomePageBackground;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 /* For mobile phones: */
@@ -97,11 +102,6 @@ body.welcome-page {
 }
 
 .welcome {
-    background: $welcomePageBackground;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     display: flex;
     flex-direction: column;
     font-family: $welcomePageFontFamily;

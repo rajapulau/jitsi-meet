@@ -91,11 +91,12 @@
 
         .video-quality-dialog-label-container.active {
             color: $videoQualityActive;
+            font-weight: bold;
 
             &::before {
-                background: $videoQualityActive;
+                background: #FFFFFF;
                 height: 12px;
-                top: -19px;
+                top: -21px;
                 width: 12px;
             }
         }
