@@ -236,7 +236,7 @@ var interfaceConfig = {
     /**
      * Specify the Android app package name.
      */
-    ANDROID_APP_PACKAGE: 'com.qiscus.meet.app'
+    ANDROID_APP_PACKAGE: 'com.qiscus.meet.app',
 
     /**
      * Override the behavior of some notifications to remain displayed until
