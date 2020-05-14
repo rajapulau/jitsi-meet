@@ -113,8 +113,9 @@ function handle_get_room_size(event)
 	else
 		log("debug", "no such room exists");
 		-- return 404;
-		local data = {participants = 0}
-		return json.encode(data);
+		--local data = {participants = 0}
+		--return json.encode(data);
+		return { status_code = 200; body = [[{"participants":]]..participant_count..[[}]] };
 	end
 
 	if participant_count > 1 then
@@ -180,7 +181,8 @@ function handle_get_room (event)
             "there are %s occupants in room", tostring(participant_count));
 	else
 		log("debug", "no such room exists");
-		return { status_code = 404; };
+		--return { status_code = 404; };
+		return { status_code = 200; body = json.encode(occupants_json); };
 	end
 
 	if participant_count > 1 then
