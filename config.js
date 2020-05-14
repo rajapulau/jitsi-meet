@@ -71,7 +71,7 @@ var config = {
     // Audio
 
     // Disable measuring of audio levels.
-    disableAudioLevels: true,
+    // disableAudioLevels: true,
     // audioLevelsInterval: 200,
 
     // Enabling this will run the lib-jitsi-meet no audio detection module which
@@ -370,16 +370,16 @@ var config = {
 
     analytics: {
         // The Google Analytics Tracking ID:
-        // googleAnalyticsTrackingId: 'your-tracking-id-UA-123456-1'
+        googleAnalyticsTrackingId: 'UA-164803650-1',
 
         // The Amplitude APP Key:
         // amplitudeAPPKey: '<APP_KEY>'
 
         // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
-        // scriptURLs: [
-        //      "libs/analytics-ga.min.js", // google-analytics
+        scriptURLs: [
+              "libs/analytics-ga.min.js", // google-analytics
         //      "https://example.com/my-custom-analytics.js"
-        // ],
+        ],
     },
 
     // Information about the jitsi-meet instance we are connecting to, including
@@ -533,8 +533,8 @@ var config = {
     // Allow all above example options to include a trailing comma and
     // prevent fear when commenting out the last value.
     enableLipSync: false,
+    enableTalkWhileMuted: true,
     makeJsonParserHappy: 'even if last key had a trailing comma'
-
     // no configuration value should follow this line.
 };
 
