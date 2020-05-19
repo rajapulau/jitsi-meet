@@ -254,7 +254,7 @@ class WelcomePage extends AbstractWelcomePage {
                     
                         <div className='footer'>
                             <div className='container'>
-                                <div class="contact-us-button">
+                                <div className="contact-us-button">
                                     <a
                                         href = 'https://www.qiscus.com/contact'
                                         target = '_new' className='info'>
