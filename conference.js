@@ -2500,6 +2500,10 @@ export default {
             = APP.store.getState()['features/base/settings'].displayName;
 
         APP.UI.changeDisplayName('localVideoContainer', displayName);
+
+        APP.store.dispatch(updateSettings({
+            displayName: displayName
+        }));
     },
 
     /**
