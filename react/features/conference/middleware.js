@@ -35,7 +35,7 @@ MiddlewareRegistry.register(store => next => action => {
             setPreferredVideoQuality(
                 reducedUI
                     ? VIDEO_QUALITY_LEVELS.LOW
-                    : VIDEO_QUALITY_LEVELS.STANDARD));
+                    : VIDEO_QUALITY_LEVELS.HIGH));
 
         break;
     }

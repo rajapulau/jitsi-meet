@@ -49,7 +49,7 @@ var interfaceConfig = {
     TOOLBAR_BUTTONS: [
 	'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
         'fodeviceselection', 'hangup', 'profile', 'info', 'chat', 
-        'settings', 'raisehand',
+        'settings', 'raisehand','livestreaming',
         'videoquality', 'filmstrip', 'stats', 'shortcuts',
         'tileview', 'mute-everyone',
         'e2ee'
