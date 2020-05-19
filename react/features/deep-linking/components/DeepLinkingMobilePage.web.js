@@ -1,13 +1,14 @@
 // @flow
 
 import React, { Component } from 'react';
-import { connect } from '../../base/redux';
+import type { Dispatch } from 'redux';
 
 import { createDeepLinkingPageEvent, sendAnalytics } from '../../analytics';
+import { isSupportedMobileBrowser } from '../../base/environment';
 import { translate } from '../../base/i18n';
 import { Platform } from '../../base/react';
 import { DialInSummary } from '../../invite';
-
+import { openWebApp } from '../actions';
 import { _TNS } from '../constants';
 import { generateDeepLinkingURL } from '../functions';
 import { renderPromotionalFooter } from '../renderPromotionalFooter';
@@ -39,6 +40,11 @@ type Props = {
     _room: string,
 
     /**
+     * Used to dispatch actions from the buttons.
+     */
+    dispatch: Dispatch<any>,
+
+    /**
      * The function to translate human-readable text.
      */
     t: Function
@@ -61,6 +67,7 @@ class DeepLinkingMobilePage extends Component<Props> {
 
         // Bind event handlers so they are only bound once per instance.
         this._onDownloadApp = this._onDownloadApp.bind(this);
+        this._onLaunchWeb = this._onLaunchWeb.bind(this);
         this._onOpenApp = this._onOpenApp.bind(this);
     }
 
@@ -130,15 +137,16 @@ class DeepLinkingMobilePage extends Component<Props> {
                             { t(`${_TNS}.downloadApp`) }
                         </button>
                     </a>
-                    <a
-                        { ...onOpenLinkProperties }
-                        className = { `${_SNS}__href` }
-                        href = { generateDeepLinkingURL() }
-                        onClick = { this._onOpenApp }>
-                        {/* <button className = { `${_SNS}__button` }> */}
-                        { t(`${_TNS}.openApp`) }
-                        {/* </button> */}
-                    </a>
+                    {
+                        isSupportedMobileBrowser()
+                            && <a
+                                onClick = { this._onLaunchWeb }
+                                target = '_top'>
+                                <button className = { downloadButtonClassName }>
+                                    { t(`${_TNS}.launchWebButton`) }
+                                </button>
+                            </a>
+                    }
                     { renderPromotionalFooter() }
                     <DialInSummary
                         className = 'deep-linking-dial-in'
@@ -196,6 +204,20 @@ class DeepLinkingMobilePage extends Component<Props> {
         sendAnalytics(
             createDeepLinkingPageEvent(
                 'clicked', 'downloadAppButton', { isMobileBrowser: true }));
+    }
+
+    _onLaunchWeb: () => void;
+
+    /**
+     * Handles launch web button clicks.
+     *
+     * @returns {void}
+     */
+    _onLaunchWeb() {
+        sendAnalytics(
+            createDeepLinkingPageEvent(
+                'clicked', 'launchWebButton', { isMobileBrowser: true }));
+        this.props.dispatch(openWebApp());
     }
 
     _onOpenApp: () => void;
