@@ -206,7 +206,7 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
     };
     window.addEventListener('beforeunload', beforeUnloadHandler);
 
-    console.log("ganjar "+ getLocalParticipant(getState)?.name)
+    
     if (requireDisplayName
         && !getLocalParticipant(getState)?.name
         && !conference.isHidden()) {
