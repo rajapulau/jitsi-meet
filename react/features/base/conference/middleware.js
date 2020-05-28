@@ -1,7 +1,6 @@
 // @flow
 
 import { openDisplayNamePrompt } from '../../display-name';
-import { beginRoomLockRequest } from '../../room-lock';
 
 import {
     ACTION_PINNED,
@@ -211,10 +210,6 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
         && !getLocalParticipant(getState)?.name
         && !conference.isHidden()) {
         dispatch(openDisplayNamePrompt(undefined));
-    }
-
-    if (conference.getParticipantCount() < 2){
-        dispatch(openDisplayNamePrompt(undefined));    
     }
 
     return result;
