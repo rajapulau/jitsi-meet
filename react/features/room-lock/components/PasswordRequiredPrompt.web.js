@@ -1,7 +1,6 @@
 // @flow
 
 import { FieldTextStateless as TextField } from '@atlaskit/field-text';
-import { Checkbox } from '@atlaskit/checkbox';
 import React, { Component } from 'react';
 import type { Dispatch } from 'redux';
 
@@ -65,8 +64,6 @@ class PasswordRequiredPrompt extends Component<Props, State> {
         super(props);
 
         this.state = {
-            displayName: (this.props._localParticipantName) ? this.props._localParticipantName : '',
-            startWithVideoMuted: props._settings.startWithVideoMuted,
             password: ''
         };
 
@@ -105,13 +102,6 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     _renderBody() {
         return (
             <div>
-                <Checkbox
-                    isChecked = { this.state.startWithVideoMuted }
-                    label = { this.props.t('settings.startWithAudioOnly') }
-                    name = 'start-video-muted'
-                    onChange = { this._onStartWithVideoMuted }
-                     />
-
                 <TextField
                     autoFocus = { true }
                     compact = { true }
