@@ -46,8 +46,6 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
 
         // Bind event handlers so they are only bound once for every instance.
         this._onDisplayNameChange = this._onDisplayNameChange.bind(this);
-        this._onStartWithVideoMuted = this._onStartWithVideoMuted.bind(this);
-        this._onEnteredPasswordChange = this._onEnteredPasswordChange.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
     }
 
@@ -73,12 +71,6 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
                 onCancel = { this._onCancel }
                 titleKey = 'dialog.displayNameRequired'
                 width = 'small'>
-                <Checkbox
-                    isChecked = { this.state.startWithVideoMuted }
-                    label = { this.props.t('settings.startWithAudioOnly') }
-                    name = 'start-video-muted'
-                    onChange = { this._onStartWithVideoMuted }
-                     />
 
                 <TextField
                     required
