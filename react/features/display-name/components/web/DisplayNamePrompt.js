@@ -2,10 +2,12 @@
 
 import React from 'react';
 import { FieldTextStateless as TextField } from '@atlaskit/field-text';
+import { Checkbox } from '@atlaskit/checkbox';
 
 import { Dialog } from '../../../base/dialog';
 import { translate } from '../../../base/i18n';
 import { connect } from '../../../base/redux';
+import { disconnect } from '../../../base/connection';
 
 import AbstractDisplayNamePrompt, {
     type Props
@@ -54,13 +56,24 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
      * @returns {ReactElement}
      */
     render() {
+        let digitPattern, placeHolderText;
+
+        if (this.props.passwordNumberOfDigits) {
+            placeHolderText = this.props.t('passwordDigitsOnly', {
+                number: this.props.passwordNumberOfDigits });
+            digitPattern = '\\d*';
+        }
+
         return (
             <Dialog
                 isModal = { false }
                 onSubmit = { this._onSubmit }
+                onCancel = { this._onCancel }
                 titleKey = 'dialog.displayNameRequired'
                 width = 'small'>
+
                 <TextField
+                    required
                     autoFocus = { true }
                     compact = { true }
                     label = { this.props.t('dialog.enterDisplayName') }

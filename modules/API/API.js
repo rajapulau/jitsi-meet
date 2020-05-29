@@ -11,10 +11,12 @@ import {
     setSubject
 } from '../../react/features/base/conference';
 import { parseJWTFromURLParams } from '../../react/features/base/jwt';
+import { setE2EEKey } from '../../react/features/e2ee';
 import { invite } from '../../react/features/invite';
 import { toggleTileView } from '../../react/features/video-layout';
+import { setVideoQuality } from '../../react/features/video-quality';
 import { getJitsiMeetTransport } from '../transport';
-
+import { muteAllParticipants } from '../../react/features/remote-video-menu/actions';
 import { API_ID, ENDPOINT_TEXT_MESSAGE_NAME } from './constants';
 import {
     processExternalDeviceRequest
@@ -68,6 +70,16 @@ function initCommands() {
         'display-name': displayName => {
             sendAnalytics(createApiEvent('display.name.changed'));
             APP.conference.changeLocalDisplayName(displayName);
+        },
+        'mute-everyone': () => {
+            sendAnalytics(createApiEvent('muted-everyone'));
+            const participants = APP.store.getState()['features/base/participants'];
+            const localIds = participants
+                .filter(participant => participant.local)
+                .filter(participant => participant.role === 'moderator')
+                .map(participant => participant.id);
+
+            APP.store.dispatch(muteAllParticipants(localIds));
         },
         'password': password => {
             const { conference, passwordRequired }
@@ -166,6 +178,15 @@ function initCommands() {
             } catch (err) {
                 logger.error('Failed sending endpoint text message', err);
             }
+        },
+        'e2ee-key': key => {
+            logger.debug('Set E2EE key command received');
+            APP.store.dispatch(setE2EEKey(key));
+        },
+        'set-video-quality': frameHeight => {
+            logger.debug('Set video quality command received');
+            sendAnalytics(createApiEvent('set.video.quality'));
+            APP.store.dispatch(setVideoQuality(frameHeight));
         }
     };
     transport.on('event', ({ data, name }) => {
@@ -431,6 +452,22 @@ class API {
         this._sendEvent({
             name: 'participant-left',
             id
+        });
+    }
+
+    /**
+     * Notify external application (if API is enabled) that the user role
+     * has changed.
+     *
+     * @param {string} id - User id.
+     * @param {string} role - The new user role.
+     * @returns {void}
+     */
+    notifyUserRoleChanged(id: string, role: string) {
+        this._sendEvent({
+            name: 'participant-role-changed',
+            id,
+            role
         });
     }
 

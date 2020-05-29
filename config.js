@@ -44,9 +44,6 @@ var config = {
     //
 
     testing: {
-        // Enables experimental simulcast support on Firefox.
-        enableFirefoxSimulcast: false,
-
         // P2P test mode disables automatic switching to P2P when there are 2
         // participants in the conference.
         p2pTestMode: false
@@ -74,7 +71,7 @@ var config = {
     // Audio
 
     // Disable measuring of audio levels.
-    // disableAudioLevels: false,
+    // disableAudioLevels: true,
     // audioLevelsInterval: 200,
 
     // Enabling this will run the lib-jitsi-meet no audio detection module which
@@ -106,7 +103,7 @@ var config = {
     // Video
 
     // Sets the preferred resolution (height) for local video. Defaults to 720.
-    // resolution: 720,
+    //resolution: 360,
 
     // w3c spec-compliant video constraints to use for video capture. Currently
     // used by browsers that return true from lib-jitsi-meet's
@@ -116,9 +113,9 @@ var config = {
     // constraints: {
     //     video: {
     //         height: {
-    //             ideal: 720,
+    //             ideal: 360,
     //             max: 720,
-    //             min: 240
+    //             min: 360
     //         }
     //     }
     // },
@@ -231,6 +228,14 @@ var config = {
     // disabled, then bandwidth estimations are disabled.
     // enableRemb: false,
 
+    // Enables ICE restart logic in LJM and displays the page reload overlay on
+    // ICE failure. Current disabled by default because it's causing issues with
+    // signaling when Octo is enabled. Also when we do an "ICE restart"(which is
+    // not a real ICE restart), the client maintains the TCC sequence number
+    // counter, but the bridge resets it. The bridge sends media packets with
+    // TCC sequence numbers starting from 0.
+    // enableIceRestart: false,
+
     // Defines the minimum number of participants to start a call (the default
     // is set in Jicofo and set to 2).
     // minParticipants: 2,
@@ -255,7 +260,10 @@ var config = {
     // useNicks: false,
 
     // Require users to always specify a display name.
-    requireDisplayName: true,
+    // requireDisplayName: false,
+
+    // Require users to always set password in conference.
+    requireSetPassword: true,
 
     // Whether to use a welcome page or not. In case it's false a random room
     // will be joined when no room is specified.
@@ -295,6 +303,9 @@ var config = {
     // Enables calendar integration, depends on googleApiApplicationClientID
     // and microsoftApiApplicationClientID
     // enableCalendarIntegration: false,
+
+    // When 'true', it shows an intermediate page before joining, where the user can  configure its devices.
+    // prejoinPageEnabled: false,
 
     // Stats
     //
@@ -346,7 +357,7 @@ var config = {
         // The STUN servers that will be used in the peer to peer connections
         stunServers: [
 
-            // { urls: 'stun:jitsi-meet.example.com:443' },
+            // { urls: 'stun:jitsi-meet.example.com:4446' },
             { urls: 'stun:meet-jit-si-turnrelay.jitsi.net:443' }
         ],
 
@@ -373,16 +384,20 @@ var config = {
 
     analytics: {
         // The Google Analytics Tracking ID:
-        // googleAnalyticsTrackingId: 'your-tracking-id-UA-123456-1'
+        googleAnalyticsTrackingId: 'UA-164803650-1',
+
+        // Matomo configuration:
+        // matomoEndpoint: 'https://your-matomo-endpoint/',
+        // matomoSiteID: '42',
 
         // The Amplitude APP Key:
         // amplitudeAPPKey: '<APP_KEY>'
 
         // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
-        // scriptURLs: [
-        //      "libs/analytics-ga.min.js", // google-analytics
+        scriptURLs: [
+              "libs/analytics-ga.min.js", // google-analytics
         //      "https://example.com/my-custom-analytics.js"
-        // ],
+        ],
     },
 
     // Information about the jitsi-meet instance we are connecting to, including
@@ -454,6 +469,14 @@ var config = {
     // A property to disable the right click context menu for localVideo
     // the menu has option to flip the locally seen video for local presentations
     // disableLocalVideoFlip: false,
+
+    // Mainly privacy related settings
+
+    // Disables all invite functions from the app (share, invite, dial out...etc)
+    // disableInviteFunctions: true,
+
+    // Disables storing the room name to the recents list
+    // doNotStoreRoom: true,
 
     // Deployment specific URLs.
     // deploymentUrls: {
@@ -528,8 +551,8 @@ var config = {
     // Allow all above example options to include a trailing comma and
     // prevent fear when commenting out the last value.
     enableLipSync: false,
+    enableTalkWhileMuted: true,
     makeJsonParserHappy: 'even if last key had a trailing comma'
-
     // no configuration value should follow this line.
 };
 
