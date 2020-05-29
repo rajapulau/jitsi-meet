@@ -305,7 +305,7 @@ var config = {
     // enableCalendarIntegration: false,
 
     // When 'true', it shows an intermediate page before joining, where the user can  configure its devices.
-    // prejoinPageEnabled: false,
+    prejoinPageEnabled: true,
 
     // Stats
     //
