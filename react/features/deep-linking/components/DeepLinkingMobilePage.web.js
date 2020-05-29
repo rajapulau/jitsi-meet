@@ -12,6 +12,7 @@ import { openWebApp } from '../actions';
 import { _TNS } from '../constants';
 import { generateDeepLinkingURL } from '../functions';
 import { renderPromotionalFooter } from '../renderPromotionalFooter';
+import { connect } from '../../base/redux';
 
 declare var interfaceConfig: Object;
 
