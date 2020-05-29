@@ -147,16 +147,7 @@ class DeepLinkingMobilePage extends Component<Props> {
                         { t(`${_TNS}.openApp`) }
                         {/* </button> */}
                     </a>
-                    {
-                        isSupportedMobileBrowser()
-                            && <a
-                                onClick = { this._onLaunchWeb }
-                                target = '_top'>
-                                <button className = { downloadButtonClassName }>
-                                    { t(`${_TNS}.launchWebButton`) }
-                                </button>
-                            </a>
-                    }
+
                     { renderPromotionalFooter() }
                     <DialInSummary
                         className = 'deep-linking-dial-in'
