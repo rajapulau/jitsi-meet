@@ -12,7 +12,7 @@ import {
     setPassword
 } from '../base/conference';
 import { hideDialog, openDialog } from '../base/dialog';
-import { PasswordRequiredPrompt, RoomLockPrompt } from './components';
+import { PasswordRequiredPrompt, RoomLockPrompt, SetPasswordPrompt } from './components';
 
 declare var APP: Object;
 
@@ -118,6 +118,11 @@ export function endRoomLockRequest(
  */
 export function _openPasswordRequiredPrompt(conference: Object) {
     return openDialog(PasswordRequiredPrompt, { conference });
+}
+
+
+export function _openSetPasswordPrompt(conference: Object) {
+    return openDialog(SetPasswordPrompt, { conference });
 }
 
 /**
