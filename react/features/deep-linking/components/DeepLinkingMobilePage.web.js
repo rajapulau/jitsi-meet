@@ -138,6 +138,15 @@ class DeepLinkingMobilePage extends Component<Props> {
                             { t(`${_TNS}.downloadApp`) }
                         </button>
                     </a>
+                    <a
+                        { ...onOpenLinkProperties }
+                        className = { `${_SNS}__href` }
+                        href = { generateDeepLinkingURL() }
+                        onClick = { this._onOpenApp }>
+                        {/* <button className = { `${_SNS}__button` }> */}
+                        { t(`${_TNS}.openApp`) }
+                        {/* </button> */}
+                    </a>
                     {
                         isSupportedMobileBrowser()
                             && <a
