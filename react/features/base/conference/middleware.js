@@ -207,7 +207,11 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
     };
     window.addEventListener('beforeunload', beforeUnloadHandler);
 
-    if(requireSetPassword && conference.room.locked) {
+    debugger
+
+    if(requireSetPassword
+        && conference.getParticipantCount() < 2
+        && !conference.room.locked) {
         dispatch(_openSetPasswordPrompt(conference));
     }
     
