@@ -6,7 +6,7 @@ var config = {
 
     hosts: {
         // XMPP domain.
-        domain: 'jitsi-meet.example.com',
+        domain: 'meet.qiscus.com',
 
         // When using authentication, domain for guest users.
         // anonymousdomain: 'guest.example.com',
@@ -24,11 +24,11 @@ var config = {
         // focus: 'focus.jitsi-meet.example.com',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.jitsi-meet.example.com'
+        muc: 'conference.meet.qiscus.com'
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    bosh: '//jitsi-meet.example.com/http-bind',
+    bosh: '//meet.qiscus.com/http-bind',
 
     // Websocket URL
     // websocket: 'wss://jitsi-meet.example.com/xmpp-websocket',
@@ -71,7 +71,7 @@ var config = {
     // Audio
 
     // Disable measuring of audio levels.
-    // disableAudioLevels: false,
+    // disableAudioLevels: true,
     // audioLevelsInterval: 200,
 
     // Enabling this will run the lib-jitsi-meet no audio detection module which
@@ -103,7 +103,7 @@ var config = {
     // Video
 
     // Sets the preferred resolution (height) for local video. Defaults to 720.
-    // resolution: 720,
+    //resolution: 360,
 
     // w3c spec-compliant video constraints to use for video capture. Currently
     // used by browsers that return true from lib-jitsi-meet's
@@ -113,9 +113,9 @@ var config = {
     // constraints: {
     //     video: {
     //         height: {
-    //             ideal: 720,
+    //             ideal: 360,
     //             max: 720,
-    //             min: 240
+    //             min: 360
     //         }
     //     }
     // },
@@ -175,7 +175,8 @@ var config = {
     // Recording
 
     // Whether to enable file recording or not.
-    // fileRecordingsEnabled: false,
+    //fileRecordingsEnabled: false,
+    fileRecordingsEnabled: true,
     // Enable the dropbox integration.
     // dropbox: {
     //     appKey: '<APP_KEY>' // Specify your app key here.
@@ -197,7 +198,8 @@ var config = {
 
     // Whether to enable live streaming or not.
     // liveStreamingEnabled: false,
-
+    liveStreamingEnabled: true,
+    hiddenDomain: 'recorder.meet.qiscus.com',
     // Transcription (in interface_config,
     // subtitles and buttons can be configured)
     // transcribingEnabled: false,
@@ -258,7 +260,7 @@ var config = {
     // useNicks: false,
 
     // Require users to always specify a display name.
-    // requireDisplayName: true,
+    requireDisplayName: true,
 
     // Whether to use a welcome page or not. In case it's false a random room
     // will be joined when no room is specified.
@@ -270,6 +272,8 @@ var config = {
 
     // Disable hiding of remote thumbnails when in a 1-on-1 conference call.
     // disable1On1Mode: false,
+    // hendra
+    disable1On1Mode: true,
 
     // Default language for the user interface.
     // defaultLanguage: 'en',
@@ -377,7 +381,7 @@ var config = {
 
     analytics: {
         // The Google Analytics Tracking ID:
-        // googleAnalyticsTrackingId: 'your-tracking-id-UA-123456-1'
+        googleAnalyticsTrackingId: 'UA-164803650-1',
 
         // Matomo configuration:
         // matomoEndpoint: 'https://your-matomo-endpoint/',
@@ -387,10 +391,10 @@ var config = {
         // amplitudeAPPKey: '<APP_KEY>'
 
         // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
-        // scriptURLs: [
-        //      "libs/analytics-ga.min.js", // google-analytics
+        scriptURLs: [
+              "libs/analytics-ga.min.js", // google-analytics
         //      "https://example.com/my-custom-analytics.js"
-        // ],
+        ],
     },
 
     // Information about the jitsi-meet instance we are connecting to, including
@@ -543,8 +547,9 @@ var config = {
 
     // Allow all above example options to include a trailing comma and
     // prevent fear when commenting out the last value.
+    enableLipSync: false,
+    enableTalkWhileMuted: true,
     makeJsonParserHappy: 'even if last key had a trailing comma'
-
     // no configuration value should follow this line.
 };
 

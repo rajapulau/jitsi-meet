@@ -70,7 +70,7 @@ export function maybeOpenFeedbackDialog(conference: Object) {
                 feedbackSubmitted: true,
                 showThankYou: true
             });
-        } else if (conference.isCallstatsEnabled() && feedbackPercentage > Math.random() * 100) {
+        } else if (feedbackPercentage > Math.random() * 100) {
             return new Promise(resolve => {
                 dispatch(openFeedbackDialog(conference, () => {
                     const { submitted } = getState()['features/feedback'];
@@ -125,16 +125,24 @@ export function submitFeedback(
         score: number,
         message: string,
         conference: Object) {
-    return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
-        .then(
-            () => dispatch({ type: SUBMIT_FEEDBACK_SUCCESS }),
-            error => {
-                dispatch({
-                    type: SUBMIT_FEEDBACK_ERROR,
-                    error
-                });
+        
+        return dispatch => {
+            const requestOptions = {
+                method: 'POST',
+                headers: {  'Content-Type': 'text/plain;charset=utf-8', },
+                body: JSON.stringify({ star: score, review: message})
+            };
 
-                return Promise.reject(error);
-            }
-        );
+            fetch('https://script.google.com/macros/s/AKfycbzSkW2Gf-f8F40xQ-QIgBYndzBAlwggjKJJV6r-h2yR7aL4rRw/exec?tableName=Data&action=insert', requestOptions)
+                .then(response => response.json())
+                .then(res => {
+                    dispatch({ type: SUBMIT_FEEDBACK_SUCCESS })
+                })
+                .catch(error => {
+                    dispatch({
+                        type: SUBMIT_FEEDBACK_ERROR,
+                        error
+                    });
+                })
+        }
 }

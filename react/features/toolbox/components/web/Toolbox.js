@@ -63,6 +63,7 @@ import {
     toggleTileView
 } from '../../../video-layout';
 import {
+    VideoQualityIcon,
     OverflowMenuVideoQualityItem,
     VideoQualityDialog
 } from '../../../video-quality';
@@ -1290,6 +1291,9 @@ class Toolbox extends Component<Props, State> {
                         buttonsRight.indexOf('info') !== -1
                             && <InfoDialogButton />
                     }
+                    <VideoQualityIcon
+                    key = 'videoquality'
+                    onClick = { this._onToolbarOpenVideoQuality } />
                     { buttonsRight.indexOf('overflowmenu') !== -1
                         && <OverflowMenuButton
                             isOpen = { _overflowMenuVisible }

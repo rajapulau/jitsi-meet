@@ -1,6 +1,7 @@
 // @flow
 
 import { FieldTextStateless as TextField } from '@atlaskit/field-text';
+import { Checkbox } from '@atlaskit/checkbox';
 import React, { Component } from 'react';
 import type { Dispatch } from 'redux';
 
@@ -10,6 +11,12 @@ import { translate } from '../../base/i18n';
 import { connect } from '../../base/redux';
 
 import { _cancelPasswordRequiredPrompt } from '../actions';
+
+import {
+    getLocalParticipant
+} from '../../base/participants';
+
+import { updateSettings } from '../../base/settings';
 
 /**
  * The type of the React {@code Component} props of
@@ -51,6 +58,7 @@ type State = {
  */
 class PasswordRequiredPrompt extends Component<Props, State> {
     state = {
+        displayName: '',
         password: ''
     };
 
@@ -63,8 +71,16 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
+        this.state = {
+            displayName: (this.props._localParticipantName) ? this.props._localParticipantName : '',
+            startWithVideoMuted: props._settings.startWithVideoMuted,
+            password: ''
+        };
+
         // Bind event handlers so they are only bound once per instance.
         this._onPasswordChanged = this._onPasswordChanged.bind(this);
+        this._onStartWithVideoMuted = this._onStartWithVideoMuted.bind(this);
+        this._onDisplayNameChange = this._onDisplayNameChange.bind(this);
         this._onCancel = this._onCancel.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
     }
@@ -98,6 +114,24 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     _renderBody() {
         return (
             <div>
+                <Checkbox
+                    isChecked = { this.state.startWithVideoMuted }
+                    label = { this.props.t('settings.startWithAudioOnly') }
+                    name = 'start-video-muted'
+                    onChange = { this._onStartWithVideoMuted }
+                     />
+
+                <TextField
+                    required
+                    autoFocus = { true }
+                    compact = { true }
+                    label = { this.props.t('dialog.enterDisplayName') }
+                    name = 'displayName'
+                    onChange = { this._onDisplayNameChange }
+                    shouldFitContainer = { true }
+                    type = 'text'
+                    value = { this.state.displayName } />
+
                 <TextField
                     autoFocus = { true }
                     compact = { true }
@@ -109,6 +143,22 @@ class PasswordRequiredPrompt extends Component<Props, State> {
                     value = { this.state.password } />
             </div>
         );
+    }
+
+    _onDisplayNameChange: (Object) => void;
+
+    /**
+     * Updates the entered display name.
+     *
+     * @param {Object} event - The DOM event triggered from the entered display
+     * name value having changed.
+     * @private
+     * @returns {void}
+     */
+    _onDisplayNameChange(event) {
+        this.setState({
+            displayName: event.target.value
+        });
     }
 
     _onPasswordChanged: ({ target: { value: * }}) => void;
@@ -125,6 +175,21 @@ class PasswordRequiredPrompt extends Component<Props, State> {
             password: value
         });
     }
+
+    _onStartWithVideoMuted: (Object) => void;
+
+    /**
+     * Updates the internal state of entered password.
+     *
+     * @param {Object} event - DOM Event for value change.
+     * @private
+     * @returns {void}
+     */
+    _onStartWithVideoMuted(event) {
+        this.setState({ startWithVideoMuted: event.target.checked });
+    }
+
+    _onSetDisplayName: string => boolean;
 
     _onCancel: () => boolean;
 
@@ -151,7 +216,23 @@ class PasswordRequiredPrompt extends Component<Props, State> {
      * @returns {boolean}
      */
     _onSubmit() {
-        const { conference } = this.props;
+        const { conference, dispatch } = this.props;
+        let displayName = this.state.displayName;
+        let startWithVideoMuted = this.state.startWithVideoMuted
+
+        dispatch(updateSettings({
+            startWithVideoMuted
+        }));
+        APP.conference.muteVideo(startWithVideoMuted)
+
+        if (!displayName || !displayName.trim()) {
+            return false;
+        }
+
+        // Store display name in settings
+        dispatch(updateSettings({
+            displayName
+        }));
 
         // We received that password is required, but user is trying anyway to
         // login without a password. Mark the room as not locked in case she
@@ -170,4 +251,30 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     }
 }
 
-export default translate(connect()(PasswordRequiredPrompt));
+/**
+ * Maps (parts of) the Redux state to the associated props for the
+ * {@code InfoDialog} component.
+ *
+ * @param {Object} state - The Redux state.
+ * @private
+ * @returns {{
+    *     _canEditPassword: boolean,
+    *     _conference: Object,
+    *     _conferenceName: string,
+    *     _inviteURL: string,
+    *     _localParticipantName: ?string,
+    *     _locationURL: string,
+    *     _locked: string,
+    *     _password: string
+    * }}
+    */
+   function _mapStateToProps(state) {
+       const localParticipant = getLocalParticipant(state);
+   
+       return {
+           _localParticipantName: localParticipant?.name,
+           _settings: state['features/base/settings']
+       };
+   }
+
+export default translate(connect(_mapStateToProps)(PasswordRequiredPrompt));
