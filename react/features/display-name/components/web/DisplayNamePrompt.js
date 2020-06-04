@@ -1,14 +1,11 @@
 /* @flow */
 
-import React from 'react';
 import { FieldTextStateless as TextField } from '@atlaskit/field-text';
-import { Checkbox } from '@atlaskit/checkbox';
+import React from 'react';
 
 import { Dialog } from '../../../base/dialog';
 import { translate } from '../../../base/i18n';
 import { connect } from '../../../base/redux';
-import { disconnect } from '../../../base/connection';
-
 import AbstractDisplayNamePrompt, {
     type Props
 } from '../AbstractDisplayNamePrompt';

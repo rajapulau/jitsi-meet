@@ -3,10 +3,11 @@
 import React from 'react';
 import Moment from 'react-moment';
 
+import { isMobileBrowser } from '../../base/environment/utils';
 import { translate } from '../../base/i18n';
+import { Icon, IconWarning } from '../../base/icons';
 import { Watermarks } from '../../base/react';
 import { connect } from '../../base/redux';
-import { isMobileBrowser } from '../../base/environment/utils';
 import { CalendarList } from '../../calendar-sync';
 import { RecentList } from '../../recent-list';
 import { SettingsButton, SETTINGS_TABS } from '../../settings';
@@ -221,6 +222,7 @@ class WelcomePage extends AbstractWelcomePage {
                                     title = { t('welcomepage.roomNameAllowedChars') }
                                     type = 'text'
                                     value = { this.state.room } />
+                                { this._renderInsecureRoomNameWarning() }
                             </form>
                         </div>
                         <div
@@ -264,6 +266,22 @@ class WelcomePage extends AbstractWelcomePage {
                         </div>
                         
                     </div>
+            </div>
+        );
+    }
+
+    /**
+     * Renders the insecure room name warning.
+     *
+     * @inheritdoc
+     */
+    _doRenderInsecureRoomNameWarning() {
+        return (
+            <div className = 'insecure-room-name-warning'>
+                <Icon src = { IconWarning } />
+                <span>
+                    { this.props.t('security.insecureRoomNameWarning') }
+                </span>
             </div>
         );
     }
