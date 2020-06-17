@@ -49,7 +49,7 @@ var interfaceConfig = {
     TOOLBAR_BUTTONS: [
 	'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
         'fodeviceselection', 'hangup', 'profile', 'info', 'chat', 
-        'settings', 'raisehand',
+        'settings', 'raisehand','livestreaming',
         'videoquality', 'filmstrip', 'stats', 'shortcuts',
         'tileview', 'mute-everyone',
         'e2ee'
@@ -210,7 +210,7 @@ var interfaceConfig = {
     /**
      * When enabled, the kick participant button will not be presented for users without a JWT
      */
-    // HIDE_KICK_BUTTON_FOR_GUESTS: false
+    // HIDE_KICK_BUTTON_FOR_GUESTS: false,
 
     /**
      * How many columns the tile view can expand to. The respected range is
@@ -229,6 +229,17 @@ var interfaceConfig = {
     MOBILE_DOWNLOAD_LINK_IOS: 'https://apps.apple.com/us/app/qiscus-meet/id1504851543',
 
     /**
+     * Specify Firebase dynamic link properties for the mobile apps.
+     */
+    // MOBILE_DYNAMIC_LINK: {
+    //    APN: 'org.jitsi.meet',
+    //    APP_CODE: 'w2atb',
+    //    CUSTOM_DOMAIN: undefined,
+    //    IBI: 'com.atlassian.JitsiMeet.ios',
+    //    ISI: '1165103905'
+    // },
+
+    /**
      * Specify mobile app scheme for opening the app from the mobile browser.
      */
     APP_SCHEME: 'com.qiscus.meetios',
@@ -236,7 +247,7 @@ var interfaceConfig = {
     /**
      * Specify the Android app package name.
      */
-    ANDROID_APP_PACKAGE: 'com.qiscus.meet.app'
+    ANDROID_APP_PACKAGE: 'com.qiscus.meet.app',
 
     /**
      * Override the behavior of some notifications to remain displayed until
@@ -251,6 +262,12 @@ var interfaceConfig = {
      MOBILE_DYNAMIC_LINK
      PHONE_NUMBER_REGEX
     */
+
+    // Allow all above example options to include a trailing comma and
+    // prevent fear when commenting out the last value.
+    makeJsonParserHappy: 'even if last key had a trailing comma'
+
+    // no configuration value should follow this line.
 };
 
 /* eslint-enable no-unused-vars, no-var, max-len */

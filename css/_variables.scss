@@ -47,10 +47,10 @@ $newToolbarHangupFontSize: 32px;
 $newToolbarSize: 40px;
 $newToolbarSizeWithPadding: calc(#{$newToolbarSize} + 24px);
 $toolbarTitleFontSize: 19px;
-$overflowMenuBG: initial;
-$overflowMenuItemHoverBG: #313D52;
-$overflowMenuItemHoverColor: #B8C7E0;
-$overflowMenuItemColor: #B8C7E0;
+$overflowMenuBG: #ffffff !important;;
+$overflowMenuItemHoverBG: #01416C;
+$overflowMenuItemHoverColor: #FFFFFF;
+$overflowMenuItemColor:#01416C;
 
 /**
  * Video layout
@@ -181,7 +181,7 @@ $welcomePageHeaderBackgroundSize: none;
 $welcomePageHeaderPaddingBottom: 0px;
 
 $welcomePageHeaderTextMarginTop: 35px;
-$welcomePageHeaderTextMarginBottom: 42px;
+$welcomePageHeaderTextMarginBottom: 34px;
 
 $welcomePageHeaderTextTitleMarginBottom: 16px;
 $welcomePageHeaderTextTitleFontSize: 2.5rem;

@@ -7,7 +7,7 @@ import {
     VIDEO_QUALITY_LEVELS,
     conferenceLeft,
     getCurrentConference,
-    setPreferredReceiverVideoQuality
+    setPreferredVideoQuality
 } from '../base/conference';
 import { hideDialog, isDialogOpen } from '../base/dialog';
 import { setActiveModalId } from '../base/modal';
@@ -32,10 +32,10 @@ MiddlewareRegistry.register(store => next => action => {
         dispatch(setFilmstripEnabled(!reducedUI));
 
         dispatch(
-            setPreferredReceiverVideoQuality(
+            setPreferredVideoQuality(
                 reducedUI
                     ? VIDEO_QUALITY_LEVELS.LOW
-                    : VIDEO_QUALITY_LEVELS.STANDARD));
+                    : VIDEO_QUALITY_LEVELS.HIGH));
 
         break;
     }

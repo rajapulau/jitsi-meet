@@ -71,7 +71,7 @@ var config = {
     // Audio
 
     // Disable measuring of audio levels.
-    disableAudioLevels: true,
+    // disableAudioLevels: true,
     // audioLevelsInterval: 200,
 
     // Enabling this will run the lib-jitsi-meet no audio detection module which
@@ -103,22 +103,22 @@ var config = {
     // Video
 
     // Sets the preferred resolution (height) for local video. Defaults to 720.
-    resolution: 360,
+    //resolution: 360,
 
     // w3c spec-compliant video constraints to use for video capture. Currently
     // used by browsers that return true from lib-jitsi-meet's
     // util#browser#usesNewGumFlow. The constraints are independent from
     // this config's resolution value. Defaults to requesting an ideal
     // resolution of 720p.
-     constraints: {
-         video: {
-             height: {
-                 ideal: 360,
-                 max: 720,
-                 min: 360
-             }
-         }
-     },
+    // constraints: {
+    //     video: {
+    //         height: {
+    //             ideal: 360,
+    //             max: 720,
+    //             min: 360
+    //         }
+    //     }
+    // },
 
     // Enable / disable simulcast support.
     // disableSimulcast: false,
@@ -228,6 +228,14 @@ var config = {
     // disabled, then bandwidth estimations are disabled.
     // enableRemb: false,
 
+    // Enables ICE restart logic in LJM and displays the page reload overlay on
+    // ICE failure. Current disabled by default because it's causing issues with
+    // signaling when Octo is enabled. Also when we do an "ICE restart"(which is
+    // not a real ICE restart), the client maintains the TCC sequence number
+    // counter, but the bridge resets it. The bridge sends media packets with
+    // TCC sequence numbers starting from 0.
+    // enableIceRestart: false,
+
     // Defines the minimum number of participants to start a call (the default
     // is set in Jicofo and set to 2).
     // minParticipants: 2,
@@ -292,6 +300,9 @@ var config = {
     // Enables calendar integration, depends on googleApiApplicationClientID
     // and microsoftApiApplicationClientID
     // enableCalendarIntegration: false,
+
+    // When 'true', it shows an intermediate page before joining, where the user can  configure its devices.
+    // prejoinPageEnabled: false,
 
     // Stats
     //
@@ -533,8 +544,8 @@ var config = {
     // Allow all above example options to include a trailing comma and
     // prevent fear when commenting out the last value.
     enableLipSync: false,
+    enableTalkWhileMuted: true,
     makeJsonParserHappy: 'even if last key had a trailing comma'
-
     // no configuration value should follow this line.
 };
 

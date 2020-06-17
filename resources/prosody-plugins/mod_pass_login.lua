@@ -6,7 +6,7 @@ module:hook("muc-occupant-pre-join", function (event)
     local user, domain, res = jid.split(event.stanza.attr.from);
     log("info", "--------------> user %s domain %s res %s pass %s", tostring(user),tostring(domain),tostring(res),tostring(room:get_password())); 
 
-    if user=='recorder' and domain=='recorder.meetstage.qiscus.com' then
+    if user=='recorder' and domain=='recorder.meet.qiscus.com' then
       local join = stanza:get_child("x", MUC_NS);
       join:tag("password", { xmlns = MUC_NS }):text(room:get_password());
     end;
