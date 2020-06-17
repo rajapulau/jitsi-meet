@@ -6,7 +6,7 @@ var config = {
 
     hosts: {
         // XMPP domain.
-        domain: 'meet.qiscus.com',
+        domain: 'dgcall.qiscus.com',
 
         // When using authentication, domain for guest users.
         // anonymousdomain: 'guest.example.com',
@@ -24,11 +24,11 @@ var config = {
         // focus: 'focus.jitsi-meet.example.com',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.meet.qiscus.com'
+        muc: 'conference.dgcall.qiscus.com'
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    bosh: '//meet.qiscus.com/http-bind',
+    bosh: '//dgcall.qiscus.com/http-bind',
 
     // Websocket URL
     // websocket: 'wss://jitsi-meet.example.com/xmpp-websocket',
@@ -199,7 +199,7 @@ var config = {
     // Whether to enable live streaming or not.
     // liveStreamingEnabled: false,
     liveStreamingEnabled: true,
-    hiddenDomain: 'recorder.meet.qiscus.com',
+    hiddenDomain: 'recorder.dgcall.qiscus.com',
     // Transcription (in interface_config,
     // subtitles and buttons can be configured)
     // transcribingEnabled: false,
@@ -252,7 +252,7 @@ var config = {
     // useNicks: false,
 
     // Require users to always specify a display name.
-    requireDisplayName: true,
+    requireDisplayName: false,
 
     // Whether to use a welcome page or not. In case it's false a random room
     // will be joined when no room is specified.
@@ -370,16 +370,16 @@ var config = {
 
     analytics: {
         // The Google Analytics Tracking ID:
-        // googleAnalyticsTrackingId: 'your-tracking-id-UA-123456-1'
+       // googleAnalyticsTrackingId: 'UA-164803650-1',
 
         // The Amplitude APP Key:
         // amplitudeAPPKey: '<APP_KEY>'
 
         // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
-        // scriptURLs: [
+        //scriptURLs: [
         //      "libs/analytics-ga.min.js", // google-analytics
         //      "https://example.com/my-custom-analytics.js"
-        // ],
+        //],
     },
 
     // Information about the jitsi-meet instance we are connecting to, including
