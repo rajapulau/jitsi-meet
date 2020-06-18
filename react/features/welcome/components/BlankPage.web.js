@@ -18,7 +18,7 @@ class BlankPage extends Component<Props> {
         return (
             <div className='unsupported-desktop-browser'>
                 <h2 className = 'unsupported-desktop-browser__title'>
-		            You don't have permission to access via browsers
+		            Ups, You don't have permission to access via browsers
                 </h2>
             </div>
         );
