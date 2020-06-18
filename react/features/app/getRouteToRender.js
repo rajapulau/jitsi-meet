@@ -98,7 +98,7 @@ function _getWebConferenceRoute(state): ?Promise<Route> {
             if (deepLinkComponent) {
                 route.component = deepLinkComponent;
             } else if (isSupportedBrowser()) {
-                route.component = Conference;
+                route.component = BlankPage;
             } else {
                 route.component = UnsupportedDesktopBrowser;
             }
