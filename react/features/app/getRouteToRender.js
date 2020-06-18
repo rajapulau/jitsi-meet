@@ -118,7 +118,7 @@ function _getWebWelcomePageRoute(state): Promise<Route> {
 
     if (isWelcomePageUserEnabled(state)) {
         if (isSupportedBrowser()) {
-            route.component = WelcomePage;
+            route.component = BlankPage;
         } else {
             route.component = UnsupportedDesktopBrowser;
         }
