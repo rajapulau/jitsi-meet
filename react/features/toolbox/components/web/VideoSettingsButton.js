@@ -1,14 +1,16 @@
 // @flow
 
 import React, { Component } from 'react';
-import { isVideoSettingsButtonDisabled } from '../../functions';
-import { toggleVideoSettings, VideoSettingsPopup } from '../../../settings';
-import VideoMuteButton from '../VideoMuteButton';
-import JitsiMeetJS from '../../../base/lib-jitsi-meet/_';
+
 import { IconArrowDown } from '../../../base/icons';
+import JitsiMeetJS from '../../../base/lib-jitsi-meet/_';
 import { connect } from '../../../base/redux';
 import { ToolboxButtonWithIcon } from '../../../base/toolbox';
+import { getLocalJitsiVideoTrack } from '../../../base/tracks';
 import { getMediaPermissionPromptVisibility } from '../../../overlay';
+import { toggleVideoSettings, VideoSettingsPopup } from '../../../settings';
+import { isVideoSettingsButtonDisabled } from '../../functions';
+import VideoMuteButton from '../VideoMuteButton';
 
 type Props = {
 
@@ -22,6 +24,11 @@ type Props = {
      * Useful for enabling the button on initial permission grant.
      */
     permissionPromptVisibility: boolean,
+
+    /**
+     * Whether there is a video track or not.
+     */
+    hasVideoTrack: boolean,
 
     /**
      * If the button should be disabled
@@ -63,6 +70,17 @@ class VideoSettingsButton extends Component<Props, State> {
         this.state = {
             hasPermissions: false
         };
+    }
+
+    /**
+     * Returns true if the settings icon is disabled.
+     *
+     * @returns {boolean}
+     */
+    _isIconDisabled() {
+        const { hasVideoTrack, isDisabled } = this.props;
+
+        return (!this.state.hasPermissions || isDisabled) && !hasVideoTrack;
     }
 
     /**
@@ -115,14 +133,13 @@ class VideoSettingsButton extends Component<Props, State> {
      * @inheritdoc
      */
     render() {
-        const { isDisabled, onVideoOptionsClick, visible } = this.props;
-        const iconDisabled = !this.state.hasPermissions || isDisabled;
+        const { onVideoOptionsClick, visible } = this.props;
 
         return visible ? (
             <VideoSettingsPopup>
                 <ToolboxButtonWithIcon
                     icon = { IconArrowDown }
-                    iconDisabled = { iconDisabled }
+                    iconDisabled = { this._isIconDisabled() }
                     onIconClick = { onVideoOptionsClick }>
                     <VideoMuteButton />
                 </ToolboxButtonWithIcon>
@@ -139,6 +156,7 @@ class VideoSettingsButton extends Component<Props, State> {
  */
 function mapStateToProps(state) {
     return {
+        hasVideoTrack: Boolean(getLocalJitsiVideoTrack(state)),
         isDisabled: isVideoSettingsButtonDisabled(state),
         permissionPromptVisibility: getMediaPermissionPromptVisibility(state)
     };
