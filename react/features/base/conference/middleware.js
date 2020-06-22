@@ -213,7 +213,7 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
         dispatch(openDisplayNamePrompt(undefined));
     }
 
-    if (conference.getParticipantCount() < 2){
+    if (requireDisplayName && conference.getParticipantCount() < 2){
         dispatch(openDisplayNamePrompt(undefined));    
     }
 

@@ -9,7 +9,7 @@ var interfaceConfig = {
      * Whether or not the blurred video background for large video should be
      * displayed on browsers that can support it.
      */
-    DISABLE_VIDEO_BACKGROUND: false,
+    DISABLE_VIDEO_BACKGROUND: true,
 
     INITIAL_TOOLBAR_TIMEOUT: 20000,
     TOOLBAR_TIMEOUT: 4000,
@@ -48,7 +48,7 @@ var interfaceConfig = {
      */
     TOOLBAR_BUTTONS: [
 	'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-        'fodeviceselection', 'hangup', 'profile', 'info', 'chat', 
+        'fodeviceselection', 'hangup', 'profile', 'info', 'chat',
         'settings', 'raisehand','livestreaming',
         'videoquality', 'filmstrip', 'stats', 'shortcuts',
         'tileview', 'mute-everyone',
@@ -83,7 +83,7 @@ var interfaceConfig = {
     // Enables feedback star animation.
     ENABLE_FEEDBACK_ANIMATION: false,
     DISABLE_FOCUS_INDICATOR: false,
-    DISABLE_DOMINANT_SPEAKER_INDICATOR: false,
+    DISABLE_DOMINANT_SPEAKER_INDICATOR: true,
 
     /**
      * Whether the speech to text transcription subtitles panel is disabled.
@@ -106,7 +106,7 @@ var interfaceConfig = {
     LOCAL_THUMBNAIL_RATIO: 16 / 9, // 16:9
     REMOTE_THUMBNAIL_RATIO: 1, // 1:1
     // Documentation reference for the live streaming feature.
-    LIVE_STREAMING_HELP_LINK: 'https://jitsi.org/live',
+    LIVE_STREAMING_HELP_LINK: 'https://support.qiscus.com/hc/en-us/articles/900000903746-How-To-Live-Stream-a-Conference-on-Youtube-Live',
 
     /**
      * Whether the mobile app Jitsi Meet is to be promoted to participants
@@ -254,7 +254,7 @@ var interfaceConfig = {
      * explicitly dismissed through a user action. The value is how long, in
      * milliseconds, those notifications should remain displayed.
      */
-    // ENFORCE_NOTIFICATION_AUTO_DISMISS_TIMEOUT: 15000,
+    //ENFORCE_NOTIFICATION_AUTO_DISMISS_TIMEOUT: 1,
 
     // List of undocumented settings
     /**

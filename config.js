@@ -71,7 +71,7 @@ var config = {
     // Audio
 
     // Disable measuring of audio levels.
-    // disableAudioLevels: true,
+    disableAudioLevels: true,
     // audioLevelsInterval: 200,
 
     // Enabling this will run the lib-jitsi-meet no audio detection module which
@@ -406,7 +406,7 @@ var config = {
     },
 
     // Decides whether the start/stop recording audio notifications should play on record.
-    // disableRecordAudioNotification: false,
+    disableRecordAudioNotification: true,
 
     // Information for the chrome extension banner
     // chromeExtensionBanner: {
