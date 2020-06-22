@@ -1,6 +1,5 @@
 // @flow
 
-import { openDisplayNamePrompt } from '../../display-name';
 import { beginRoomLockRequest } from '../../room-lock';
 
 import {
