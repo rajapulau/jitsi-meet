@@ -9,8 +9,8 @@ local basexx = require "basexx";
 
 log('info', 'Loaded token moderation plugin');
 -- Hook into room creation to add this wrapper to every new room
---module:hook("muc-room-created", function(event)
-module:hook("muc-room-pre-create", function(event)
+module:hook("muc-room-created", function(event)
+--module:hook("muc-room-pre-create", function(event)
         log('info', 'room created, adding token moderation code');
         local room = event.room;
         local _handle_normal_presence = room.handle_normal_presence;
