@@ -1,7 +1,7 @@
 // @flow
 
 import { openDisplayNamePrompt } from '../../display-name';
-import { beginRoomLockRequest } from '../../room-lock';
+import { _openSetPasswordPrompt } from '../../room-lock/actions';
 
 import {
     ACTION_PINNED,
@@ -193,6 +193,7 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
     const { conference } = action;
     const { pendingSubjectChange } = getState()['features/base/conference'];
     const { requireDisplayName } = getState()['features/base/config'];
+    const { requireSetPassword } = getState()['features/base/config'];
 
     pendingSubjectChange && dispatch(setSubject(pendingSubjectChange));
 
@@ -206,6 +207,9 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
     };
     window.addEventListener('beforeunload', beforeUnloadHandler);
 
+    if(requireSetPassword && !conference.room.locked) {
+        dispatch(_openSetPasswordPrompt(conference));
+    }
     
     if (requireDisplayName
         && !getLocalParticipant(getState)?.name
