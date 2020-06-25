@@ -195,12 +195,13 @@ class DisplayNamePrompt extends AbstractDisplayNamePrompt<State> {
         }));
 
         APP.conference.muteVideo(startWithVideoMuted)
-
-        !_locked && this.props.dispatch(setPassword(
-            _conference,
-            _conference.lock,
-            this.state.enteredPassword
-        ));
+        if(!_locked && this.props._canEditPassword){
+            this.props.dispatch(setPassword(
+                _conference,
+                _conference.lock,
+                this.state.enteredPassword
+            ));
+        }
 
         if(this.state.enteredPassword == ''){
             return false;
