@@ -207,7 +207,7 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
     };
     window.addEventListener('beforeunload', beforeUnloadHandler);
 
-    if(requireSetPassword && !conference.room.locked) {
+    if(requireSetPassword && conference.room.xmpp.token != undefined) {
         dispatch(_openSetPasswordPrompt(conference));
     }
     
