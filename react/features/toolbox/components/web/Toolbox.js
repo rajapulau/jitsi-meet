@@ -1093,7 +1093,7 @@ class Toolbox extends Component<Props, State> {
                         } />
                 );
             case 'closedcaptions':
-                return <ClosedCaptionButton showLabel = { true } />;
+                return <ClosedCaptionButton showLabel = { true } key="caption" />;
             case 'info':
                 return <InfoDialogButton showLabel = { true } />;
             case 'invite':
