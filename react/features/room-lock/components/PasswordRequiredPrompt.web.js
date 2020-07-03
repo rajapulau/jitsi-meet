@@ -114,24 +114,6 @@ class PasswordRequiredPrompt extends Component<Props, State> {
     _renderBody() {
         return (
             <div>
-                <Checkbox
-                    isChecked = { this.state.startWithVideoMuted }
-                    label = { this.props.t('settings.startWithAudioOnly') }
-                    name = 'start-video-muted'
-                    onChange = { this._onStartWithVideoMuted }
-                     />
-
-                <TextField
-                    required
-                    autoFocus = { true }
-                    compact = { true }
-                    label = { this.props.t('dialog.enterDisplayName') }
-                    name = 'displayName'
-                    onChange = { this._onDisplayNameChange }
-                    shouldFitContainer = { true }
-                    type = 'text'
-                    value = { this.state.displayName } />
-
                 <TextField
                     autoFocus = { true }
                     compact = { true }
@@ -217,22 +199,6 @@ class PasswordRequiredPrompt extends Component<Props, State> {
      */
     _onSubmit() {
         const { conference, dispatch } = this.props;
-        let displayName = this.state.displayName;
-        let startWithVideoMuted = this.state.startWithVideoMuted
-
-        dispatch(updateSettings({
-            startWithVideoMuted
-        }));
-        APP.conference.muteVideo(startWithVideoMuted)
-
-        if (!displayName || !displayName.trim()) {
-            return false;
-        }
-
-        // Store display name in settings
-        dispatch(updateSettings({
-            displayName
-        }));
 
         // We received that password is required, but user is trying anyway to
         // login without a password. Mark the room as not locked in case she
