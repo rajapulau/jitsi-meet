@@ -207,10 +207,10 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
     };
     window.addEventListener('beforeunload', beforeUnloadHandler);
 
-    if(requireSetPassword && conference.room.xmpp.token != undefined) {
+    if(requireSetPassword && conference.getParticipantCount() < 2 && conference.room.locked == false) {
         dispatch(_openSetPasswordPrompt(conference));
     }
-    
+
     if (requireDisplayName
         && !getLocalParticipant(getState)?.name
         && !conference.isHidden()) {
