@@ -130,7 +130,7 @@ export function submitFeedback(
             const requestOptions = {
                 method: 'POST',
                 headers: {  'Content-Type': 'text/plain;charset=utf-8', },
-                body: JSON.stringify({ star: score, review: message, room:conference.rtc.options.name})
+                body: JSON.stringify({ star: score, review: message, room:conference.rtc.options.name, user:JSON.parse(window.localStorage['features/base/settings']).displayName})
             };
 
             fetch('https://script.google.com/macros/s/AKfycbzSkW2Gf-f8F40xQ-QIgBYndzBAlwggjKJJV6r-h2yR7aL4rRw/exec?tableName=Data&action=insert', requestOptions)
