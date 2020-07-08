@@ -32,6 +32,11 @@ type Props = {
     _disableKick: boolean,
 
     /**
+     * Whether or not to display the kick button.
+     */
+    _disableRemoteEveryoneMute: boolean,
+
+    /**
      * Whether or not to display the remote mute buttons.
      */
     _disableRemoteMute: Boolean,
@@ -168,6 +173,7 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
     _renderRemoteVideoMenu() {
         const {
             _disableKick,
+            _disableRemoteEveryoneMute,
             _disableRemoteMute,
             _isModerator,
             initialVolumeValue,
@@ -188,11 +194,13 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
                         key = 'mute'
                         participantID = { participantID } />
                 );
-                buttons.push(
-                    <MuteEveryoneElseButton
-                        key = 'mute-others'
-                        participantID = { participantID } />
-                );
+                if(!_disableRemoteEveryoneMute) {
+                    buttons.push(
+                        <MuteEveryoneElseButton
+                            key = 'mute-others'
+                            participantID = { participantID } />
+                    );
+                }       
             }
 
             if (!_disableKick) {
@@ -254,10 +262,11 @@ class RemoteVideoMenuTriggerButton extends Component<Props> {
 function _mapStateToProps(state) {
     const participant = getLocalParticipant(state);
     const { remoteVideoMenu = {}, disableRemoteMute } = state['features/base/config'];
-    const { disableKick } = remoteVideoMenu;
+    const { disableKick, disableRemoteEveryoneMute } = remoteVideoMenu;
 
     return {
         _isModerator: Boolean(participant?.role === PARTICIPANT_ROLE.MODERATOR),
+        _disableRemoteEveryoneMute: Boolean(disableRemoteEveryoneMute),
         _disableKick: Boolean(disableKick),
         _disableRemoteMute: Boolean(disableRemoteMute)
     };
