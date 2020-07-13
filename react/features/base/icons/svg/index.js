@@ -6,6 +6,7 @@ export { default as IconArrowBack } from './arrow_back.svg';
 export { default as IconArrowDown } from './arrow_down.svg';
 export { default as IconArrowLeft } from './arrow-left.svg';
 export { default as IconAudioOnly } from './visibility.svg';
+export { default as IconCrown } from './crown.svg';
 export { default as IconAudioOnlyOff } from './visibility-off.svg';
 export { default as IconAudioRoute } from './volume.svg';
 export { default as IconBlurBackground } from './blur-background.svg';

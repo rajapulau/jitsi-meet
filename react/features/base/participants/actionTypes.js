@@ -23,6 +23,26 @@ export const DOMINANT_SPEAKER_CHANGED = 'DOMINANT_SPEAKER_CHANGED';
 export const KICK_PARTICIPANT = 'KICK_PARTICIPANT';
 
 /**
+ * Create an action for granting moderator to a participant.
+ *
+ * {
+ *     type: GRANT_MODERATOR,
+ *     id: string
+ * }
+ */
+export const GRANT_MODERATOR = 'GRANT_MODERATOR';
+
+/**
+ * Create an action for removing grant moderator to a participant.
+ *
+ * {
+ *     type: REMOVE_GRANT_MODERATOR,
+ *     id: string
+ * }
+ */
+export const REMOVE_GRANT_MODERATOR = 'REMOVE_GRANT_MODERATOR';
+
+/**
  * Create an action for muting a remote participant.
  *
  * {

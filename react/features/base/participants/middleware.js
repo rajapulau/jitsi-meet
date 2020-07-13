@@ -25,6 +25,8 @@ import {
 } from './actions';
 import {
     DOMINANT_SPEAKER_CHANGED,
+    GRANT_MODERATOR,
+    REMOVE_GRANT_MODERATOR,
     KICK_PARTICIPANT,
     MUTE_REMOTE_PARTICIPANT,
     PARTICIPANT_DISPLAY_NAME_CHANGED,
@@ -85,6 +87,20 @@ MiddlewareRegistry.register(store => next => action => {
                 raisedHand: false
             }));
 
+        break;
+    }
+
+    case GRANT_MODERATOR: {
+        const { conference } = store.getState()['features/base/conference'];
+
+        conference.grantOwner(action.id);
+        break;
+    }
+
+    case REMOVE_GRANT_MODERATOR: {
+        const { conference } = store.getState()['features/base/conference'];
+
+        conference.removeGrantOwner(action.id);
         break;
     }
 

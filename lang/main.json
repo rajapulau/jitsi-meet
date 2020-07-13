@@ -790,6 +790,8 @@
         "domute": "Mute",
         "domuteOthers": "Mute everyone else",
         "flip": "Flip",
+        "grantModerator": "Grant Moderator",
+        "removeGrantModerator": "Remove Moderator",
         "kick": "Kick out",
         "moderator": "Moderator",
         "mute": "Participant is muted",
