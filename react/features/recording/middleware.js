@@ -107,9 +107,7 @@ MiddlewareRegistry.register(({ dispatch, getState }) => next => action => {
         conference.on(
             JitsiConferenceEvents.RECORDER_STATE_CHANGED,
             recorderSession => {
-                const participantId = getState()['features/large-video'].participantId
-                const participants = getState()['features/base/participants']
-                const iAmRole = participants.find(participants => participants.id === participantId).role
+                const iAmRole = getState()['features/base/conference'].conference.room.role
 
                 if (recorderSession) {
                     recorderSession.getID()
