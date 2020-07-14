@@ -107,19 +107,21 @@ MiddlewareRegistry.register(({ dispatch, getState }) => next => action => {
         conference.on(
             JitsiConferenceEvents.RECORDER_STATE_CHANGED,
             recorderSession => {
-                const iAmRole = getState()['features/base/conference'].conference.room.role
+                
 
                 if (recorderSession) {
                     recorderSession.getID()
                         && dispatch(
                             updateRecordingSessionData(recorderSession));
 
-                    if (iAmRole === 'moderator') {
-                        recorderSession.getError()
-                        && _showRecordingErrorNotification(
-                            recorderSession, dispatch);
+                    if (getState()['features/base/conference'].conference != undefined) {
+                        const iAmRole = getState()['features/base/conference'].conference.room.role
+                        if (iAmRole === 'moderator') {
+                            recorderSession.getError()
+                            && _showRecordingErrorNotification(
+                                recorderSession, dispatch);
+                        }
                     }
-                    
                 }
 
                 return;
