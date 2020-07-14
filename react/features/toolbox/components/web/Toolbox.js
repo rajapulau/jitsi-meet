@@ -1288,6 +1288,9 @@ class Toolbox extends Component<Props, State> {
                             tooltip = { t('toolbar.invite') } /> }
                     { buttonsRight.indexOf('security') !== -1
                         && <SecurityDialogButton customClass = 'security-toolbar-button' /> }
+                    <VideoQualityIcon
+                    key = 'videoquality'
+                    onClick = { this._onToolbarOpenVideoQuality } />
                     { buttonsRight.indexOf('overflowmenu') !== -1
                         && <OverflowMenuButton
                             isOpen = { _overflowMenuVisible }
