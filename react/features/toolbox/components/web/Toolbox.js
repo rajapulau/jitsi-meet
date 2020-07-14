@@ -61,6 +61,7 @@ import {
     toggleTileView
 } from '../../../video-layout';
 import {
+    VideoQualityIcon,
     OverflowMenuVideoQualityItem,
     VideoQualityDialog
 } from '../../../video-quality';

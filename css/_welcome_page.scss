@@ -1,16 +1,183 @@
 body.welcome-page {
-    background: inherit;
     overflow: auto;
+    background-color: #01416C;
+    background: $welcomePageBackground;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+  }
+  
+  @media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}
+  }
+  @media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+  }
+
+@media (max-width: 1000px) {
+    .welcome .welcome-watermark div{
+        font-size: 18px !important;
+    }
+
+    .welcome .welcome-watermark .container-time{
+        margin: -45px auto !important;
+    }
+    .welcome .welcome-watermark div{
+        font-size: 18px !important;
+    }
+
+    .welcome .header {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .welcome .header #enter_room{
+        width: auto !important;
+    }
+
+    .leftwatermark {
+        left:0 !important;
+    }
+
+    .welcome .welcome-page-settings {
+        right: 20px !important;
+    }
+
+    .welcome{
+        background-image: none !important;
+        background-color: #01416C !important;
+    }
+
+    .line{
+        margin-left: 10px !important;
+    }
+
+    .group-download{
+        margin-left: 10px !important;
+    }
+
+    .meet-bottom{
+        position: relative !important;
+        color: #ffffff !important;
+        right: 0 !important;
+    }
+
+    .welcome .welcome-page-settings{
+        top : 10px !important;
+    }
+
+    .welcome .meet-top a{
+        margin-left: 18px !important;      
+    }
 }
 
 .welcome {
-    background-image: $welcomePageBackground;
     display: flex;
     flex-direction: column;
     font-family: $welcomePageFontFamily;
-    justify-content: space-between;
-    min-height: 100vh;
+    // justify-content: space-between;
+    // min-height: 100vh;
+    height: 100%;
     position: relative;
+
+    .meet-bottom{
+        padding-top: 36px;
+        a.info{
+            color: #FFFFFF;
+        }
+        a.info:after{
+            content:url(../images/arrow.svg);
+            margin: 0 0 0 20px;
+        }
+    }
+
+    .group-download{
+        position: relative;
+        margin-left: 60px;
+        padding-bottom: 150px;
+        font-size: 16px;
+        line-height: 150%;
+        color: #FFFFFF;
+        padding-top: 46px;
+        height: 12px;
+
+        .footer{
+            display: flex;
+
+            .container{
+                width: 50%;
+                margin-top: 24px;
+                p{
+                    text-align: center;
+                    color:#01416C;
+                }
+            }
+        }
+
+        .middle-text{
+            height: 110px;
+            font-size: 14px;
+            line-height: 26px;
+            letter-spacing: -0.012em;
+        }
+
+        .middle-text-description{
+            padding-top: 34px;
+        }
+
+        .container-download{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .android-download{
+            background-image: url(../images/app-playstore.svg);
+            height: 40px;
+            width: 140px;
+            margin-top: 18px;
+            background-repeat: no-repeat;
+        }
+        .ios-download{
+            background-image: url(../images/app-appstore.svg);
+            height: 40px;
+            width: 140px;
+            margin-top: 18px;
+            background-repeat: no-repeat;
+        }
+    }
 
     .header {
         background-image: $welcomePageHeaderBackground;
@@ -19,12 +186,13 @@ body.welcome-page {
         background-size: $welcomePageHeaderBackgroundSize;
         padding-bottom: $welcomePageHeaderPaddingBottom;
         align-items: center;
-        display: flex;
+        // display: flex;
         flex-direction: column;
         min-height: fit-content;
-        overflow: hidden;
         position: relative;
-        text-align: center;
+        text-align: left;
+        padding-top: 50px;
+        padding-left: 60px;
 
         .header-text {
             display: flex;
@@ -43,6 +211,7 @@ body.welcome-page {
             line-height: $welcomePageHeaderTextTitleLineHeight;
             margin-bottom: $welcomePageHeaderTextTitleMarginBottom;
             opacity: $welcomePageHeaderTextTitleOpacity;
+            letter-spacing: -0.032em;
         }
 
         .header-text-description {
@@ -53,17 +222,26 @@ body.welcome-page {
             line-height: $welcomePageHeaderTextDescriptionLineHeight;
             margin-bottom: $welcomePageHeaderTextDescriptionMarginBottom;
             align-self: $welcomePageHeaderTextDescriptionAlignSelf;
+            margin-top: 18px;
         }
 
         #enter_room {
             display: flex;
+            // margin-top: 300px;
+            float: left;
+            background-size: 100%;
+            // margin-bottom: $welcomePageHeaderTextMarginBottom;
+
+            background: #FFFFFF;
+            box-shadow: 0px 8px 28px rgba(51, 51, 51, 0.09);
+            border-radius: 10px;
+
             align-items: center;
             max-width: calc(100% - 40px);
-            width: $welcomePageEnterRoomWidth;
+            width: 590px;
+            height: 153px;
             z-index: $zindex2;
-            background-color: #fff;
             padding: $welcomePageEnterRoomPadding;
-            border-radius: $welcomePageEnterRoomBorderRadius;
 
             .enter-room-input-container {
                 width: 100%;
@@ -74,9 +252,9 @@ body.welcome-page {
 
                 .enter-room-title {
                     display: $welcomePageEnterRoomTitleDisplay;
-                    font-size: 18px;
+                    font-size: 24px;
                     font-weight: bold;
-                    padding-bottom: 5px;
+                    padding-bottom: 24px;
                 }
 
                 .enter-room-input {
@@ -179,26 +357,40 @@ body.welcome-page {
         }
     }
 
+    .contact-us-button {
+        a{
+            color: #FFFFFF;
+            background: #74C162;
+            box-shadow: 0 6px 13px rgba(0,0,0,.1);
+            border-radius: 4px;
+            display: inline-block;
+            padding: 15px 24px 16px;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+    }
     .welcome-page-button {
         width: $welcomePageButtonWidth;
         min-width: $welcomePageButtonMinWidth;
         height: $welcomePageButtonHeight;
         font-size: $welcomePageButtonFontSize;
         font-weight: $welcomePageButtonFontWeight;
-        background: #0074E0;
+        background: #01416C;
         border-radius: $welcomePageButtonBorderRadius;
         color: #FFFFFF;
         text-align: center;
         vertical-align: middle;
         line-height: $welcomePageButtonLineHeight;
+        margin-top: 37px;
         cursor: pointer;
     }
 
     .welcome-page-settings {
         color: $welcomePageDescriptionColor;
         position: absolute;
-        top: 32px;
-        right: 32px;
+        top: 58px;
+        right: 75px;
         z-index: $zindex2;
 
         * {
@@ -207,9 +399,70 @@ body.welcome-page {
         }
     }
 
-    .welcome-watermark {
+    .line{
+        width: 34px;
+        height: 5px;
+        background: #FFFFFF;
+    }
+
+    .meet-top{
+        a{
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 17px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-left: 60px;
+        }
+
+        a:hover{
+            text-decoration: none;
+        }
+        
+    }
+
+    .meet-bottom{
+        color: #01416c;
+        margin: 0px auto 0px auto;
+        right: 10%;
         position: absolute;
-        width: 100%;
-        height: 100%;
+        bottom: 0;
+    }
+    
+    .welcome-watermark {
+        // display: flex;
+        flex-wrap: nowrap;
+        position: absolute;
+        width: 85%;
+
+        .container-time{
+            display: flex;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        div {
+            line-height: 75px;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        div.time{
+            margin-top: 33px;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        div.second{
+            text-align: right;
+            font-weight: bold;
+
+            :after {
+                content:"• ";
+                margin-left: 24px;
+                margin-right: 24px;
+            }
+        }
     }
 }

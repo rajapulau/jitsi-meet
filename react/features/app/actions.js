@@ -32,6 +32,8 @@ import {
 } from './functions';
 import logger from './logger';
 
+import UIUtil from '../../../modules/UI/util/UIUtil';
+
 declare var APP: Object;
 declare var interfaceConfig: Object;
 
@@ -316,7 +318,7 @@ export function maybeRedirectToWelcomePage(options: Object = {}) {
         if (getState()['features/base/config'].enableWelcomePage) {
             setTimeout(
                 () => {
-                    dispatch(redirectWithStoredParams('/'));
+                    dispatch(UIUtil.redirect('/'));
                 },
                 options.showThankYou ? 3000 : 500);
         }

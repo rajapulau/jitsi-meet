@@ -5,6 +5,8 @@ import {
     DOMINANT_SPEAKER_CHANGED,
     HIDDEN_PARTICIPANT_JOINED,
     HIDDEN_PARTICIPANT_LEFT,
+    GRANT_MODERATOR,
+    REMOVE_GRANT_MODERATOR,
     KICK_PARTICIPANT,
     MUTE_REMOTE_PARTICIPANT,
     PARTICIPANT_ID_CHANGED,
@@ -46,6 +48,38 @@ export function dominantSpeakerChanged(id, conference) {
         }
     };
 }
+
+/**
+* Create an action for granting moderator to a participant.
+*
+* @param {string} id - Participant's ID.
+* @returns {{
+*     type: GRANT_MODERATOR,
+*     id: string
+* }}
+*/
+export function grantModerator(id) {
+    return {
+        type: GRANT_MODERATOR,
+        id
+    };
+}
+
+/**
+* Create an action for removing grant moderator to a participant.
+*
+* @param {string} id - Participant's ID.
+* @returns {{
+    *     type: REMOVE_GRANT_MODERATOR,
+    *     id: string
+    * }}
+    */
+    export function removeGrantModerator(id) {
+        return {
+            type: REMOVE_GRANT_MODERATOR,
+            id
+        };
+    }
 
 /**
  * Create an action for removing a participant from the conference.

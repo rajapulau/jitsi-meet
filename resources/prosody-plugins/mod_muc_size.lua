@@ -112,7 +112,10 @@ function handle_get_room_size(event)
             "there are %s occupants in room", tostring(participant_count));
 	else
 		log("debug", "no such room exists");
-		return { status_code = 404; };
+		-- return 404;
+		--local data = {participants = 0}
+		--return json.encode(data);
+		return { status_code = 200; body = [[{"participants":]]..participant_count..[[}]] };
 	end
 
 	if participant_count > 1 then
@@ -161,7 +164,12 @@ function handle_get_room (event)
 				    for _, pr in occupant:each_session() do
 					local nick = pr:get_child_text("nick", "http://jabber.org/protocol/nick") or "";
 					local email = pr:get_child_text("email") or "";
+					local audiomuted = pr:get_child_text("audiomuted", "http://jitsi.org/jitmeet/audio") or "";
+                                        local videomuted = pr:get_child_text("videomuted", "http://jitsi.org/jitmeet/video") or "";
+
 					occupants_json:push({
+					    audiomuted= tostring(audiomuted),
+                                            videomuted= tostring(videomuted),
 					    jid = tostring(occupant.nick),
 					    email = tostring(email),
 					    display_name = tostring(nick)});
@@ -173,7 +181,8 @@ function handle_get_room (event)
             "there are %s occupants in room", tostring(participant_count));
 	else
 		log("debug", "no such room exists");
-		return { status_code = 404; };
+		--return { status_code = 404; };
+		return { status_code = 200; body = json.encode(occupants_json); };
 	end
 
 	if participant_count > 1 then

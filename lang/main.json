@@ -44,7 +44,7 @@
     },
     "calendarSync": {
         "addMeetingURL": "Add a meeting link",
-        "confirmAddLink": "Do you want to add a Jitsi link to this event?",
+        "confirmAddLink": "Do you want to add a Qiscus link to this event?",
         "error": {
             "appConfiguration": "Calendar integration is not properly configured.",
             "generic": "An error has occurred. Please check your calendar settings or try refreshing the calendar.",
@@ -192,7 +192,7 @@
         "contactSupport": "Contact support",
         "copy": "Copy",
         "dismiss": "Dismiss",
-        "displayNameRequired": "Hi! What’s your name?",
+        "displayNameRequired": "Start Conference",
         "done": "Done",
         "e2eeDescription": "End-to-End Encryption is currently EXPERIMENTAL. Please keep in mind that turning on end-to-end encryption will effectively disable server-side provided services such as: recording, live streaming and phone participation. Also keep in mind that the meeting will only work for people joining from browsers with support for insertable streams.",
         "e2eeLabel": "E2EE key",
@@ -201,6 +201,7 @@
         "e2eeSet": "Set",
         "e2eeWarning": "WARNING: Not all participants in this meeting seem to have support for End-to-End encryption. If you enable it they won't be able to see nor hear you.",
         "enterDisplayName": "Please enter your name here",
+        "enterPasswordRoom": "Please enter your conference password",
         "error": "Error",
         "gracefulShutdown": "Our service is currently down for maintenance. Please try again later.",
         "IamHost": "I am the host",
@@ -327,7 +328,7 @@
         "answer": "Answer",
         "audioCallTitle": "Incoming call",
         "decline": "Dismiss",
-        "productLabel": "from Jitsi Meet",
+        "productLabel": "from Qiscus Meet",
         "videoCallTitle": "Incoming video call"
     },
     "info": {
@@ -611,6 +612,7 @@
         "speakers": "Speakers",
         "startAudioMuted": "Everyone starts muted",
         "startVideoMuted": "Everyone starts hidden",
+        "startWithAudioOnly": "Start with audio only",
         "title": "Settings"
     },
     "settingsView": {
@@ -817,6 +819,8 @@
         "domute": "Mute",
         "domuteOthers": "Mute everyone else",
         "flip": "Flip",
+        "grantModerator": "Grant Moderator",
+        "removeGrantModerator": "Remove Moderator",
         "kick": "Kick out",
         "moderator": "Moderator",
         "mute": "Participant is muted",
@@ -830,7 +834,7 @@
             "join": "Tap to join",
             "roomname": "Enter room name"
         },
-        "appDescription": "Go ahead, video chat with the whole team. In fact, invite everyone you know. {{app}} is a fully encrypted, 100% open source video conferencing solution that you can use all day, every day, for free — with no account needed.",
+        "appDescription": "Built on top of Qiscus Meet SDK, Qiscus Meet has it all from video to voice conference call. Start build your own conferencing app today. Contact us for more information.",
         "audioVideoSwitch": {
             "audio": "Voice",
             "video": "Video"
@@ -838,7 +842,7 @@
         "calendar": "Calendar",
         "connectCalendarButton": "Connect your calendar",
         "connectCalendarText": "Connect your calendar to view all your meetings in {{app}}. Plus, add {{provider}} meetings to your calendar and start them with one click.",
-        "enterRoomTitle": "Start a new meeting",
+        "enterRoomTitle": "Create or Join your meeting here",
         "getHelp": "Get help",
         "go": "GO",
         "goSmall": "GO",
@@ -855,7 +859,7 @@
         "roomnameHint": "Enter the name or URL of the room you want to join. You may make a name up, just let the people you are meeting know it so that they enter the same name.",
         "sendFeedback": "Send feedback",
         "terms": "Terms",
-        "title": "Secure, fully featured, and completely free video conferencing"
+        "title": "Secured and Comprehensive Conferencing Call with Your Team"
     },
     "lonelyMeetingExperience": {
         "button": "Invite others",

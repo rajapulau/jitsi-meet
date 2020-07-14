@@ -2523,6 +2523,14 @@ export default {
             = APP.store.getState()['features/base/settings'].displayName;
 
         APP.UI.changeDisplayName('localVideoContainer', displayName);
+
+
+        if(APP.conference.listMembers().length > 0){
+            APP.store.dispatch(updateSettings({
+                displayName: displayName
+            }));
+        }
+        
     },
 
     /**
