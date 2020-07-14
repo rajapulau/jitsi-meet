@@ -205,7 +205,7 @@ module.exports = [
         entry: {
             'dial_in_info_bundle': './react/features/invite/components/dial-in-info-page'
         },
-        performance: getPerformanceHints(500 * 1024)
+        performance: getPerformanceHints(550 * 1024)
     }),
     Object.assign({}, config, {
         entry: {
