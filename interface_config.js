@@ -47,21 +47,21 @@ var interfaceConfig = {
     DEFAULT_BACKGROUND: '#474747',
     DEFAULT_LOCAL_DISPLAY_NAME: 'me',
     DEFAULT_LOGO_URL: 'images/watermark.png',
-    DEFAULT_REMOTE_DISPLAY_NAME: 'Fellow Jitster',
+    DEFAULT_REMOTE_DISPLAY_NAME: 'Guest',
 
-    DISABLE_DOMINANT_SPEAKER_INDICATOR: false,
+    DISABLE_DOMINANT_SPEAKER_INDICATOR: true,
 
-    DISABLE_FOCUS_INDICATOR: false,
+    DISABLE_FOCUS_INDICATOR: true,
 
     /**
      * If true, notifications regarding joining/leaving are no longer displayed.
      */
-    DISABLE_JOIN_LEAVE_NOTIFICATIONS: false,
+    DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
 
     /**
      * If true, presence status: busy, calling, connected etc. is not displayed.
      */
-    DISABLE_PRESENCE_STATUS: false,
+    DISABLE_PRESENCE_STATUS: true,
 
     /**
      * Whether the ringing sound in the call/ring overlay is disabled. If
@@ -77,13 +77,13 @@ var interfaceConfig = {
      *
      * @type {boolean}
      */
-    DISABLE_TRANSCRIPTION_SUBTITLES: false,
+    DISABLE_TRANSCRIPTION_SUBTITLES: true,
 
     /**
      * Whether or not the blurred video background for large video should be
      * displayed on browsers that can support it.
      */
-    DISABLE_VIDEO_BACKGROUND: false,
+    DISABLE_VIDEO_BACKGROUND: true,
 
     DISPLAY_WELCOME_PAGE_CONTENT: true,
     DISPLAY_WELCOME_PAGE_TOOLBAR_ADDITIONAL_CONTENT: false,
@@ -107,10 +107,10 @@ var interfaceConfig = {
     HIDE_INVITE_MORE_HEADER: false,
 
     INITIAL_TOOLBAR_TIMEOUT: 20000,
-    JITSI_WATERMARK_LINK: 'https://jitsi.org',
+    JITSI_WATERMARK_LINK: 'https://qiscus.com',
 
     LANG_DETECTION: true, // Allow i18n to detect the system language
-    LIVE_STREAMING_HELP_LINK: 'https://jitsi.org/live', // Documentation reference for the live streaming feature.
+    LIVE_STREAMING_HELP_LINK: 'https://support.qiscus.com/hc/en-us/articles/900000903746-How-To-Live-Stream-a-Conference-on-Youtube-Live', // Documentation reference for the live streaming feature.
     LOCAL_THUMBNAIL_RATIO: 16 / 9, // 16:9
 
     /**
@@ -130,7 +130,7 @@ var interfaceConfig = {
      */
     MOBILE_APP_PROMO: true,
 
-    NATIVE_APP_NAME: 'Jitsi Meet',
+    NATIVE_APP_NAME: 'Qiscus Meet',
 
     // Names of browsers which should show a warning stating the current browser
     // has a suboptimal experience. Browsers which are not listed as optimal or
@@ -139,7 +139,7 @@ var interfaceConfig = {
     OPTIMAL_BROWSERS: [ 'chrome', 'chromium', 'firefox', 'nwjs', 'electron', 'safari' ],
 
     POLICY_LOGO: null,
-    PROVIDER_NAME: 'Jitsi',
+    PROVIDER_NAME: 'Qiscus',
 
     /**
      * If true, will display recent list
@@ -169,7 +169,7 @@ var interfaceConfig = {
      * If indicated some of the error dialogs may point to the support URL for
      * help.
      */
-    SUPPORT_URL: 'https://community.jitsi.org/',
+    SUPPORT_URL: 'https://support.qiscus.com/hc/en-us',
 
     TOOLBAR_ALWAYS_VISIBLE: false,
 

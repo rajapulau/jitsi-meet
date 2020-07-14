@@ -237,7 +237,7 @@ class WelcomePage extends AbstractWelcomePage {
                             }
                         </div>
                     </div>
-                    { _moderatedRoomServiceUrl && (
+                    {/* { _moderatedRoomServiceUrl && (
                         <div id = 'moderated-meetings'>
                             <p>
                                 {
@@ -247,7 +247,7 @@ class WelcomePage extends AbstractWelcomePage {
                             </p>
                         </div>
                     ) }
-                    { this._renderTabs() }
+                    { this._renderTabs() } */}
                 </div>
                 { showAdditionalContent
                     ? <div
