@@ -55,9 +55,10 @@ export default class AbstractGrantModeratorButton extends AbstractButton<Props, 
       const { dispatch, participantID,isModerator } = this.props;
 
      if(!isModerator) {
-        dispatch(openDialog(GrantModeratorDialog, { participantID }));
+        dispatch(openDialog(GrantModeratorDialog, { participantID, isModerator }));
     } else {
-        dispatch(removeGrantModerator(participantID));
+        dispatch(openDialog(GrantModeratorDialog, { participantID, isModerator }));
+        // dispatch(removeGrantModerator(participantID));
     }
   }
 }

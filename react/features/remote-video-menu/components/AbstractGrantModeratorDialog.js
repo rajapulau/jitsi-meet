@@ -6,7 +6,7 @@ import {
     createRemoteVideoMenuButtonEvent,
     sendAnalytics
 } from '../../analytics';
-import { grantModerator } from '../../base/participants';
+import { grantModerator,removeGrantModerator } from '../../base/participants';
 
 type Props = {
 
@@ -19,6 +19,11 @@ type Props = {
      * The ID of the remote participant to be granted moderator rights.
      */
     participantID: string,
+
+    /**
+     * the participant for moderator status.
+     */
+    isModerator: Boolean,
 
     /**
      * Function to translate i18n labels.
@@ -51,7 +56,7 @@ export default class AbstractGrantModeratorDialog
      * @returns {boolean} - True (to note that the modal should be closed).
      */
     _onSubmit() {
-        const { dispatch, participantID } = this.props;
+        const { dispatch, participantID, isModerator } = this.props;
 
         sendAnalytics(createRemoteVideoMenuButtonEvent(
             'grant.moderator.button',
@@ -59,7 +64,12 @@ export default class AbstractGrantModeratorDialog
                 'participant_id': participantID
             }));
 
-        dispatch(grantModerator(participantID));
+        if (!isModerator) {
+            dispatch(grantModerator(participantID));
+        } else {
+            dispatch(removeGrantModerator(participantID));
+        }
+        
 
         return true;
     }
