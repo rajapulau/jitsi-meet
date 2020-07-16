@@ -1,15 +1,18 @@
 // @flow
 
-import { IconKick } from '../../base/icons';
+import { openDialog } from '../../base/dialog';
+import { IconCrown } from '../../base/icons';
+
 import {
     getParticipantById,
-    grantModerator,
-    removeGrantModerator,
     isLocalParticipantModerator,
-    isParticipantModerator
+    isParticipantModerator,
+    removeGrantModerator
 } from '../../base/participants';
 import { AbstractButton } from '../../base/toolbox';
 import type { AbstractButtonProps } from '../../base/toolbox';
+
+import { GrantModeratorDialog } from '.';
 
 export type Props = AbstractButtonProps & {
 
@@ -39,7 +42,7 @@ export type Props = AbstractButtonProps & {
  */
 export default class AbstractGrantModeratorButton extends AbstractButton<Props, *> {
   accessibilityLabel = 'toolbar.accessibilityLabel.grantModerator';
-  icon = IconKick;
+  icon = IconCrown;
   label = 'videothumbnail.grantModerator';
 
   /**
@@ -49,14 +52,13 @@ export default class AbstractGrantModeratorButton extends AbstractButton<Props, 
    * @returns {void}
    */
   _handleClick() {
-      const { dispatch, participantID, isModerator } = this.props;
+      const { dispatch, participantID,isModerator } = this.props;
 
-    if(!isModerator) {
-        dispatch(grantModerator(participantID));
+     if(!isModerator) {
+        dispatch(openDialog(GrantModeratorDialog, { participantID }));
     } else {
         dispatch(removeGrantModerator(participantID));
     }
-      
   }
 }
 

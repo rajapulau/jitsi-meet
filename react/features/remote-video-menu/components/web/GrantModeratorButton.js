@@ -42,9 +42,9 @@ class GrantModeratorButton extends AbstractGrantModeratorButton {
         return (
             <RemoteVideoMenuButton
                 buttonText = { t(isModerator?'videothumbnail.removeGrantModerator':'videothumbnail.grantModerator') }
-                displayClass = 'kicklink'
+                displayClass = 'grantmoderatorlink'
                 icon = { IconCrown }
-                id = { `ejectlink_${participantID}` }
+                id = { `grantmoderatorlink_${participantID}` }
                 // eslint-disable-next-line react/jsx-handler-names
                 onClick = { this._handleClick } />
         );

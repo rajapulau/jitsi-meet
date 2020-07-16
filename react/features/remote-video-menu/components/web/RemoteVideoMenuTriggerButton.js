@@ -8,8 +8,8 @@ import { Popover } from '../../../base/popover';
 import { connect } from '../../../base/redux';
 
 import {
-    MuteButton,
     GrantModeratorButton,
+    MuteButton,
     MuteEveryoneElseButton,
     KickButton,
     PrivateMessageMenuButton,
