@@ -231,9 +231,17 @@
         z-index: 600;
     }
 
-    .child-text{
-        padding-right: 20px;
+    .flex-child {
+    	flex: 0 !important;
     }
+
+    .flex-container {
+    	display: inline-grid !important;
+    }
+
+    //.child-text{
+    //    padding-right: 20px;
+    //}
 }
 
 #preview {
