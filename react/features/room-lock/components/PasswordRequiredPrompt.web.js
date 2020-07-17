@@ -1,7 +1,6 @@
 // @flow
 
 import { FieldTextStateless as TextField } from '@atlaskit/field-text';
-import { Checkbox } from '@atlaskit/checkbox';
 import React, { Component } from 'react';
 import type { Dispatch } from 'redux';
 

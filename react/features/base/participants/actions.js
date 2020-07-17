@@ -50,14 +50,14 @@ export function dominantSpeakerChanged(id, conference) {
 }
 
 /**
-* Create an action for granting moderator to a participant.
-*
-* @param {string} id - Participant's ID.
-* @returns {{
-*     type: GRANT_MODERATOR,
-*     id: string
-* }}
-*/
+ * Create an action for granting moderator to a participant.
+ *
+ * @param {string} id - Participant's ID.
+ * @returns {{
+ *     type: GRANT_MODERATOR,
+ *     id: string
+ * }}
+ */
 export function grantModerator(id) {
     return {
         type: GRANT_MODERATOR,

@@ -174,7 +174,7 @@ class SetPasswordPrompt extends Component<Props, State> {
 
         // We have used the password so let's clean it.
         this.setState({
-            password: undefined
+            password: ''
         });
 
         return true;
