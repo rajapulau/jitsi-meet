@@ -6,7 +6,7 @@ var config = {
 
     hosts: {
         // XMPP domain.
-        domain: 'meet.qiscus.com',
+        domain: 'meetstage.qiscus.com',
 
         // When using authentication, domain for guest users.
         // anonymousdomain: 'guest.example.com',
@@ -24,11 +24,11 @@ var config = {
         // focus: 'focus.jitsi-meet.example.com',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.meet.qiscus.com'
+        muc: 'conference.meetstage.qiscus.com'
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    bosh: '//meet.qiscus.com/http-bind',
+    bosh: '//meetstage.qiscus.com/http-bind',
 
     // Websocket URL
     // websocket: 'wss://jitsi-meet.example.com/xmpp-websocket',
@@ -199,7 +199,7 @@ var config = {
     // Whether to enable live streaming or not.
     // liveStreamingEnabled: false,
     liveStreamingEnabled: true,
-    hiddenDomain: 'recorder.meet.qiscus.com',
+    hiddenDomain: 'recorder.meetstage.qiscus.com',
     // Transcription (in interface_config,
     // subtitles and buttons can be configured)
     // transcribingEnabled: false,
@@ -509,10 +509,11 @@ var config = {
     // },
 
     // Options related to the remote participant menu.
-    // remoteVideoMenu: {
+    remoteVideoMenu: {
     //     // If set to true the 'Kick out' button will be disabled.
-    //     disableKick: true
-    // },
+	disableKick: false,
+        disableRemoteEveryoneMute: true
+    },
 
     // If set to true all muting operations of remote participants will be disabled.
     // disableRemoteMute: true,
