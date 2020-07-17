@@ -88,7 +88,7 @@ export default class PreMeetingScreen extends PureComponent<Props> {
                 </div>
 
                 <div className="flex-container">
-                    <div className="flex-child magenta">
+                    <div className="flex-child child-view">
                         <Preview
                             name = { name }
                             showAvatar = { showAvatar }
@@ -96,7 +96,7 @@ export default class PreMeetingScreen extends PureComponent<Props> {
                             videoTrack = { videoTrack } />
                     </div>
 
-                    <div className="flex-child green">
+                    <div className="flex-child child-text">
                         <div className = 'content'>
                             {showConferenceInfo && (
                                 <>

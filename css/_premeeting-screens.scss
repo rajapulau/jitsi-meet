@@ -222,9 +222,22 @@
     }
 }
 
+@media(min-width: 0px) and (max-width: 649px ){
+    #preview {
+        position: absolute;
+    }
+
+    .flex-child {
+        z-index: 600;
+    }
+
+    .child-text{
+        padding-right: 20px;
+    }
+}
+
 #preview {
     height: 100%;
-    // position: absolute;
     width: 100%;
 
     &.no-video {
