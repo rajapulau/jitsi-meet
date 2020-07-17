@@ -40,8 +40,8 @@ module:hook("muc-occupant-left", function(event)
                 if actor == "token_plugin" then
                         return _set_affiliation(room, true, jid, affiliation, reason)
                 -- noone else can assign owner (in order to block prosody/jisti's built in moderation functionality
-                elseif affiliation == "owner" then
-                        return nil, "modify", "not-acceptable"
+                --elseif affiliation == "owner" then
+                --        return nil, "modify", "not-acceptable"
                 -- keep other affil stuff working as normal (hopefully, haven't needed to use/test any of it)
                 else
                         return _set_affiliation(room, actor, jid, affiliation, reason);
