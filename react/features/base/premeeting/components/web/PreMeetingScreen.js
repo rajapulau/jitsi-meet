@@ -82,29 +82,45 @@ export default class PreMeetingScreen extends PureComponent<Props> {
             <div
                 className = 'premeeting-screen'
                 id = 'lobby-screen'>
-                <Preview
-                    name = { name }
-                    showAvatar = { showAvatar }
-                    videoMuted = { videoMuted }
-                    videoTrack = { videoTrack } />
-                {!videoMuted && <div className = 'preview-overlay' />}
-                <div className = 'content'>
-                    {showConferenceInfo && (
-                        <>
-                            <div className = 'title'>
-                                { title }
-                            </div>
-                            <CopyMeetingUrl />
-                        </>
-                    )}
-                    { this.props.children }
-                    <div className = 'media-btn-container'>
-                        <AudioSettingsButton visible = { true } />
-                        <VideoSettingsButton visible = { true } />
-                    </div>
-                    { this.props.skipPrejoinButton }
-                    { this.props.footer }
+                
+                <div className="logo-container">
+                    <div className="logo-prejoin"></div>
                 </div>
+
+                <div className="flex-container">
+                    <div className="flex-child magenta">
+                        <Preview
+                            name = { name }
+                            showAvatar = { showAvatar }
+                            videoMuted = { videoMuted }
+                            videoTrack = { videoTrack } />
+                    </div>
+
+                    <div className="flex-child green">
+                        <div className = 'content'>
+                            {showConferenceInfo && (
+                                <>
+                                    <div className = 'title'>
+                                        { title }
+                                    </div>
+                                    <CopyMeetingUrl />
+                                </>
+                            )}
+                            { this.props.children }
+                            <div className = 'media-btn-container'>
+                                <AudioSettingsButton visible = { true } />
+                                <VideoSettingsButton visible = { true } />
+                            </div>
+                            { this.props.skipPrejoinButton }
+                            { this.props.footer }
+                        </div>
+                    </div>
+
+                </div>
+
+                
+                {!videoMuted && <div className = 'preview-overlay' />}
+                
             </div>
         );
     }

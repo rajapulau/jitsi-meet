@@ -12,7 +12,7 @@
 
  .premeeting-screen {
     align-items: stretch;
-    background: radial-gradient(50% 50% at 50% 50%, #5D95C7 0%, #376288 100%), #FFFFFF;
+    background: radial-gradient(50% 50% at 50% 50%, #01416C 0%, #01416C 100%), #FFFFFF;
     display: flex;
     flex-direction: column;
     font-size: 1.3em;
@@ -79,7 +79,7 @@
     }
 
     .preview-overlay {
-        background-image: linear-gradient(transparent, black);
+        // background-image: linear-gradient(transparent, black);
         z-index: $toolbarZ + 1;
     }
 
@@ -187,9 +187,44 @@
     }
 }
 
+.flex-container {
+    display: flex;
+    z-index: 500;
+    margin: 0;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.flex-child {
+    flex: 1;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo-prejoin {
+        background-image: url(../images/watermark.png);
+        position: absolute;
+        top: 15;
+        width: 186px;
+        height: 74px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: 2;
+    }
+}
+
 #preview {
     height: 100%;
-    position: absolute;
+    // position: absolute;
     width: 100%;
 
     &.no-video {
@@ -199,7 +234,7 @@
 
     .preview-avatar-container {
         width: 100%;
-        height: 80%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -212,7 +247,7 @@
     video {
         height: 100%;
         object-fit: cover;
-        position: absolute;
+        // position: absolute;
         width: 100%;
     }
 }
