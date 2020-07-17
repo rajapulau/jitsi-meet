@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 
 import { VIDEO_QUALITY_LEVELS } from '../../base/conference';
+import { isMobileBrowser } from '../../base/environment/utils';
 import { translate } from '../../base/i18n';
 import {
     Icon,
@@ -48,6 +49,12 @@ type Props = {
     onClick: Function,
 
     /**
+     * Flag controlling the visibility of the button.
+     * AudioSettings popup is disabled on mobile browsers.
+     */
+    visible: boolean,
+
+    /**
      * Invoked to obtain translated strings.
      */
     t: Function
@@ -68,22 +75,22 @@ class VideoQualityIcon extends Component<Props> {
      * @returns {ReactElement}
      */
     render() {
-        const { _audioOnly, _videoQuality } = this.props;
+        const { _audioOnly, _videoQuality, visible } = this.props;
         const icon = _audioOnly || !_videoQuality
             ? IconVideoQualityAudioOnly
             : VIDEO_QUALITY_TO_ICON[_videoQuality];
 
-        return (
-            <span 
-                className = 'toolbox-button-wth-dialog'
-                onClick = { this.props.onClick }>
-                <div className= 'toolbox-button'>
-                    <div className='toolbox-icon '>
-                    <Icon src = { icon } />
+            return visible ? (
+                <span 
+                    className = 'toolbox-button-wth-dialog'
+                    onClick = { this.props.onClick }>
+                    <div className= 'toolbox-button'>
+                        <div className='toolbox-icon '>
+                        <Icon src = { icon } />
+                        </div>
                     </div>
-                </div>
-            </span>
-        );
+                </span>
+            ):'';
     }
 }
 
@@ -101,7 +108,8 @@ class VideoQualityIcon extends Component<Props> {
 function _mapStateToProps(state) {
     return {
         _audioOnly: state['features/base/audio-only'].enabled,
-        _videoQuality: state['features/base/conference'].preferredVideoQuality
+        _videoQuality: state['features/base/conference'].preferredVideoQuality,
+        visible: !isMobileBrowser()
     };
 }
 
