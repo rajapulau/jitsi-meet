@@ -130,6 +130,7 @@ export default [
     'pcStatsInterval',
     'preferH264',
     'prejoinPageEnabled',
+    'requireSetPassword',
     'requireDisplayName',
     'remoteVideoMenu',
     'resolution',
