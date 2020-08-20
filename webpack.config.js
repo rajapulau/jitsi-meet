@@ -268,6 +268,17 @@ module.exports = [
             libraryTarget: 'umd'
         }),
         performance: getPerformanceHints(30 * 1024)
+    }),
+
+    Object.assign({}, config, {
+        entry: {
+            'qiscus_external_api': './modules/API/qiscus/index.js'
+        },
+        output: Object.assign({}, config.output, {
+            library: 'QiscusMeetExternalAPI',
+            libraryTarget: 'umd'
+        }),
+        performance: getPerformanceHints(30 * 1024)
     })
 ];
 

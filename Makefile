@@ -36,6 +36,8 @@ deploy-appbundle:
 		$(BUILD_DIR)/do_external_connect.min.map \
 		$(BUILD_DIR)/external_api.min.js \
 		$(BUILD_DIR)/external_api.min.map \
+		$(BUILD_DIR)/qiscus_external_api.min.js \
+		$(BUILD_DIR)/qiscus_external_api.min.map \
 		$(BUILD_DIR)/flacEncodeWorker.min.js \
 		$(BUILD_DIR)/flacEncodeWorker.min.map \
 		$(BUILD_DIR)/device_selection_popup_bundle.min.js \
