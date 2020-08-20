@@ -8,7 +8,8 @@ local split_jid = require "util.jid".split;
 local st = require "util.stanza";
 local it = require "util.iterators";
 
-local whitelist = module:get_option_set("muc_access_whitelist");
+--local whitelist = module:get_option_set("muc_access_whitelist");
+local whitelist = module:get_option_set("muc_access_whitelist",{});
 local MAX_OCCUPANTS = module:get_option_number("muc_max_occupants", -1);
 
 local function count_keys(t)
