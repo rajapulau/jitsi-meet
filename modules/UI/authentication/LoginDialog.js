@@ -240,7 +240,6 @@ export default {
             'dialog.WaitingForHost',
             msg,
             true,
-            buttons,
             (e, submitValue) => {
                 // Do not close the dialog yet.
                 e.preventDefault();
